@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Content</title>
+</head>
+<h2>
+    Username : <span th:text="${post.username}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Category : <span th:text="${post.category}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Title : <span th:text="${post.category}" th:remove="tag"></span>
+</h2>
+
+
+<br>
+<h3><pre th:text="${post.content}" >Subtitle</pre></h3>
+
+
+
+</body>
+</html>

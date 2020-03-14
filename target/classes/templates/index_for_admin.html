@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Blog</title>
+</head>
+<body>
+<div>
+    <form action="/logout" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<div align="center">
+    <h1>Blog List</h1>
+    <a href="/admin/blog_admin/new">New Blog</a>
+    <br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+
+            <th>Title</th>
+            <th>Created At</th>
+            <th>Updated At</th>
+            <th>Category</th>
+            <th>User</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="blog1 : ${listBlog1}">
+            <td th:text="${blog1.title}">Title</td>
+            <td th:text="${blog1.createdAt}">Created At</td>
+            <td th:text="${blog1.updatedAt}">Updated At</td>
+            <td th:text="${blog1.category}">Category</td>
+            <td th:text="${blog1.username}">User</td>
+
+            <td>
+                <a th:href="@{'/text/' + ${blog1.id}}">Read</a>
+            </td>
+            <td>
+                <a th:href="@{'/admin/blog_admin/edit/' + ${blog1.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/admin/blog_admin/delete/' + ${blog1.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/admin/blog_admin/offers">Offers</a>
+</div>
+</body>
+</html>

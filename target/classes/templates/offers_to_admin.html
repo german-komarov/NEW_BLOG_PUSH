@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Blog</title>
+</head>
+<body>
+<div align="center">
+    <h1>Offers List</h1>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+
+            <th>Title</th>
+            <th>Category</th>
+            <th>User</th>
+            <th>Content</th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="post : ${listPost}">
+            <td th:text="${post.title}">Title</td>
+            <td th:text="${post.category}">Category</td>
+            <td th:text="${post.username}">User</td>
+
+            <td>
+                <a th:href="@{'/admin/blog_admin/offers/text/' + ${post.id}}">Read</a>
+            </td>
+            <td>
+                <a th:href="@{'/admin/blog_admin/offers/edit/' + ${post.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/admin/blog_admin/offers/delete/' + ${post.id}}">Delete</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/admin/blog_admin/offers/accept/' + ${post.id}}">Accept</a>
+
+            </td>
+        </tr>
+
+
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

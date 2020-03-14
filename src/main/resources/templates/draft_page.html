@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Blog</title>
+</head>
+<body>
+
+<div align="center">
+    <h1>Blog List</h1>
+    <a href="/blog/draft/new">New Draft</a>
+    <br><br>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+
+            <th>Title</th>
+            <th>Category</th>
+            <th>User</th>
+            <th>Content</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="draft : ${listDraft}">
+            <td th:text="${draft.title}">Title</td>
+            <td th:text="${draft.category}">Category</td>
+            <td th:text="${draft.username}">User</td>
+
+            <td>
+                <a th:href="@{'/blog/draft/text/' + ${draft.id}}">Read</a>
+            </td>
+            <td>
+                <a th:href="@{'/blog/draft/edit/' + ${draft.id}}">Edit</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/blog/draft/delete/' + ${draft.id}}">Delete</a>
+                &nbsp;&nbsp;&nbsp;
+                <a th:href="@{'/blog/draft/post/' + ${draft.id}}">Offer</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

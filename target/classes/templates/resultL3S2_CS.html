@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Content</title>
+</head>
+<h3>
+    Humanities gives : <span th:text="${humanities}" th:remove="tag">points</span>
+</h3>
+
+
+<h3>
+    BSc Internship gives : <span th:text="${internship}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Interdisciplinary Project gives : <span th:text="${project}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Software Certification gives : <span th:text="${certification}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Security gives : <span th:text="${security}" th:remove="tag">points</span>
+</h3>
+
+
+<h2>
+    Average is : <span th:text="${average}" th:remove="tag">points</span>
+</h2>
+<br>
+
+
+
+</body>
+</html>

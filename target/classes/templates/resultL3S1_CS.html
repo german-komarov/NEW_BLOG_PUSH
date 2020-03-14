@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Content</title>
+</head>
+<h3>
+    Math gives : <span th:text="${math}" th:remove="tag">points</span>
+</h3>
+<h3>
+    CS for Chemistry/Physics gives : <span th:text="${comp}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Physics gives : <span th:text="${phys}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Humanities gives : <span th:text="${humanities}" th:remove="tag">points</span>
+</h3>
+
+
+<h3>
+    Parallel Programming gives : <span th:text="${parallel_programming}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Artificial Intelligence gives : <span th:text="${AI}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Network Algorithms gives : <span th:text="${network_algorithms}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Combinatorics, Probabilities and Statistics gives : <span th:text="${CPS}" th:remove="tag">points</span>
+</h3>
+
+
+<h2>
+    Average is : <span th:text="${average}" th:remove="tag">points</span>
+</h2>
+<br>
+
+
+
+</body>
+</html>

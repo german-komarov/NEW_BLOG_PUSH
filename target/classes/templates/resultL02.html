@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Content</title>
+</head>
+<h3>
+    Math gives : <span th:text="${math}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Physics gives : <span th:text="${phys}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Chemistry gives : <span th:text="${chem}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    SAaP 2 : <span th:text="${comp}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    French gives : <span th:text="${french}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    English gives : <span th:text="${english}" th:remove="tag">points</span>
+</h3>
+
+<h3>
+    Humanities gives : <span th:text="${humanities}" th:remove="tag">points</span>
+</h3>
+
+<h2>
+    Average is : <span th:text="${average}" th:remove="tag">points</span>
+</h2>
+<br>
+
+
+
+</body>
+</html>
