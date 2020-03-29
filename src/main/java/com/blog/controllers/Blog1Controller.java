@@ -2,17 +2,20 @@ package com.blog.controllers;
 
 
 import com.blog.entities.Blog1;
+import com.blog.entities.Comment;
 import com.blog.entities.Post;
+import com.blog.entities.User;
 import com.blog.services.Blog1Service;
+import com.blog.services.CommentService;
 import com.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Date;
-import java.util.HashMap;
+
 import java.util.List;
 
 
@@ -23,14 +26,7 @@ public class Blog1Controller {
     private Blog1Service service;
 
     @Autowired
-    private PostService postService;
-
-    HashMap<Long, Date> creation=new HashMap<>();
-
-
-
-
-
+    private CommentService commentService;
 
     @GetMapping("/")
     public String main_page()
@@ -47,148 +43,60 @@ public class Blog1Controller {
         return "index";
     }
 
-    @GetMapping("/admin/blog_admin/new")
-    public String showNewProductPage(Model model) {
-        Blog1 blog1 = new Blog1();
-        model.addAttribute("blog1", blog1);
-
-        return "new_text";
-    }
-
-    @GetMapping("/admin/blog_admin")
-    public String admin_page(Model model)
-    {
-
-        List<Blog1> listBlog1 = service.listAll();
-        for (Blog1 bl:listBlog1)
-        {
-            creation.put(bl.getId(),bl.getCreatedAt());
-        }
-        model.addAttribute("listBlog1", listBlog1);
-        return "index_for_admin";
-    }
-
-
-
-
-    //Save
-    @PostMapping(value = "/admin/blog_admin/save")
-    public String saveProduct(@ModelAttribute("blog1") Blog1 blog1) {
-        service.save(blog1);
-        return "redirect:/admin/blog_admin";
-    }
-
-    @PostMapping(value = "/admin/blog_admin/edit/save")
-    public String saveEditedBlog(@ModelAttribute("blog1") Blog1 blog1)
-    {
-        long id =blog1.getId();
-        blog1.setCreatedAt(creation.get(id));
-        service.save(blog1);
-
-        return "redirect:/admin/blog_admin";
-    }
-
-
-    @GetMapping("/admin/blog_admin/offers")
-    public String offersToAdmin(Model model)
-    {
-        List<Post> listPost=postService.listAll();
-        model.addAttribute("listPost",listPost);
-        return "offers_to_admin";
-    }
-
-    @GetMapping("/admin/blog_admin/offers/text/{id}")
-    public ModelAndView readOffers(@PathVariable(name = "id") int id)
-    {
-        ModelAndView mav=new ModelAndView("read_offers_page");
-        Post post=postService.get(id);
-        mav.addObject(post);
-        return mav;
-
-    }
-
-    //EDIT
-    @GetMapping("/admin/blog_admin/offers/edit/{id}")
-    public ModelAndView editOfferPage(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("edit_offer");
-        Post post=postService.get(id);
-        mav.addObject("post",post);
-
-        return mav;
-    }
-
-    @PostMapping(value = "/admin/blog_admin/offers/edit/save")
-    public String saveEditedOffer(@ModelAttribute("post") Post post)
-    {
-        postService.save(post);
-        return "redirect:/admin/blog_admin/offers";
-    }
-
-    //DELETE
-    @GetMapping("/admin/blog_admin/offers/delete/{id}")
-    public String deleteOffer(@PathVariable(name = "id") int id) {
-        postService.delete(id);
-        return "redirect:/admin/blog_admin/offers";
-    }
-
-
-
-    @GetMapping("/admin/blog_admin/offers/accept/{id}")
-    public String acceptOffer(Model model,@PathVariable(name = "id") int id)
-    {
-        Post post=postService.get(id);
-        Blog1 blog1=new Blog1();
-        blog1.setTitle(post.getTitle());
-        blog1.setContent(post.getContent());
-        blog1.setUsername(post.getUsername());
-        blog1.setCategory(post.getCategory());
-        model.addAttribute("blog1",blog1);
-        return "new_text";
-
-    }
-
-
-
-
-
-
-    //ADMIN PAGE
-    @GetMapping("/admin")
-    public String admin()
-    {
-        return "admin";
-    }
-
     //READ
-    @GetMapping("/text/{id}")
+    @GetMapping("/blog/text/{id}")
     public ModelAndView read(@PathVariable(name = "id") int id)
     {
+        //List of comments
+        List<Comment> listComments=commentService.listAll(id);
+        //Creating model and view
         ModelAndView mav=new ModelAndView("read_page");
+        //Getting blog
         Blog1 blog1=service.get(id);
-        mav.addObject(blog1);
-        return mav;
-
-    }
-
-
-
-
-
-    //EDIT
-    @GetMapping("/admin/blog_admin/edit/{id}")
-    public ModelAndView showEditBlogPage(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("edit_blog");
-        Blog1 blog1 = service.get(id);
+        //Putting blog to model
         mav.addObject("blog1",blog1);
-
+        //Putting counter
+        mav.addObject("count",listComments.size());
         return mav;
     }
 
+    @GetMapping("/blog/text/{id}/comments")
+    public String comment(@PathVariable(name = "id") int id,Model model)
+    {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Comment comment=new Comment();
+        comment.setBlogid(id);
+        model.addAttribute("comment",comment);
+        List<Comment> listComments=commentService.listAll(id);
+        model.addAttribute("listComments",listComments);
+        model.addAttribute("blogid",id);
+        model.addAttribute("user",user.getUsername());
+        return "comment_page";
+
+    }
+
+    @PostMapping(value = "/blog/text/comments/add")
+    public String addComment(@ModelAttribute("comment") Comment comment)
+    {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        comment.setAuthor(user.getUsername());
+        commentService.save(comment);
+        String path="redirect:/blog/text/"+comment.getBlogid()+"/comments";
+        return path;
+
+    }
     //DELETE
-    @GetMapping("/admin/blog_admin/delete/{id}")
-    public String deleteBlog(@PathVariable(name = "id") int id) {
-        service.delete(id);
-        return "redirect:/admin/blog_admin";
+    @GetMapping("/blog/text/{blogid}/comments/delete/{id}")
+    public String deleteBlog(@PathVariable(name = "blogid") int blogid,@PathVariable(name="id") int id) {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Comment comment=commentService.get((long)id);
+        if (!comment.getAuthor().equals(user.getUsername()))
+        {
+            return "denied_page";
+        }
+        commentService.delete(id);
+        String path="redirect:/blog/text/"+blogid+"/comments";
+        return path;
     }
 
 
@@ -211,6 +119,10 @@ public class Blog1Controller {
         model.addAttribute("listBlog1", listBlog1);
         return "index";
     }
+
+
+
+
 
 
 

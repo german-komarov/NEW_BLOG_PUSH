@@ -3,8 +3,12 @@
       xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Content</title>
+    <title>Read Draft</title>
 </head>
+<div align="right">
+    <a href="/blog/draft">back</a>
+</div>
+<body>
 <h2>
     Username : <span th:text="${draft.username}" th:remove="tag"></span>
 </h2>

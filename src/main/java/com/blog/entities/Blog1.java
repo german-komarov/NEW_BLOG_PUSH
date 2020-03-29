@@ -23,6 +23,8 @@ public class Blog1 {
 
 
 
+
+
     @PrePersist
     protected void onCreate() {
         if (createdAt==null){

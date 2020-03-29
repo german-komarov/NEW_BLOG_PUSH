@@ -3,10 +3,22 @@
       xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Blog</title>
+    <title>Blog page</title>
 </head>
 <body>
+<div>
+    <form action="/logout" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
+<br>
+<div>
+    Username :
+    <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+</div>
+<div><a href="/">Main Page</a> </div>
 <div align="center">
+
     <h1>Blog List</h1>
     <br/><br/>
     <form method="post" action="/blog/filter">
@@ -35,7 +47,7 @@
             <td th:text="${blog1.username}">User</td>
 
             <td>
-                <a th:href="@{'/text/' + ${blog1.id}}">Read</a>
+                <a th:href="@{'/blog/text/' + ${blog1.id}}">Read</a>
             </td>
         </tr>
         </tbody>

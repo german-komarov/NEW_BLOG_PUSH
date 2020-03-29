@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User Info Page</title>
+</head>
+<div align="right">
+    <a href="/admin/users">back</a>
+</div>
+<body>
+<h2>
+    Id : <span th:text="${user.id}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Username : <span th:text="${user.username}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Password : <span th:text="${user.password}" th:remove="tag"></span>
+</h2>
+<br>
+<h2 th:each="role : ${user.roles}">
+    <span th:text="${role.name}">Roles</span>
+</h2>
+
+
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Comments</title>
+</head>
+<div align="left">
+    <a th:href="@{'/blog/text/' + ${blogid}}">back</a>
+</div>
+<body>
+<div align="center">
+
+
+    <form action="#" th:action="@{/blog/text/comments/add}" th:object="${comment}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+
+            <tr>
+
+                <td><input type="hidden"  th:field="*{blogid}" readonly="readonly" /></td>
+            </tr>
+            <tr>
+
+                <td><textarea type="text" Cols="50" placeholder="Leave a comment" th:field="*{content}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Save</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div th:each="comment : ${listComments}">
+    <b th:text="${comment.author}"/>
+
+    <pre th:text="${comment.content}"/>
+    <h6 th:text="${comment.createdAt}"/>
+
+    <a th:href="@{'/blog/text/' + ${blogid}+'/comments/delete/'+${comment.id}}" th:if="${comment.author}==${user}">delete</a>
+
+    <br>
+
+</div>
+</body>
+</html>

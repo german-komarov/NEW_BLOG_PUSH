@@ -3,9 +3,12 @@
       xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="utf-8" />
-    <title>Edit Product</title>
+    <title>Edit Blog</title>
 </head>
 <body>
+<div align="right">
+    <a href="/admin/blog_admin">back</a>
+</div>
 <div align="center">
     <h1>Edit Blog</h1>
     <br />
@@ -27,8 +30,8 @@
                 <td><input type="text" th:field="*{category}" /></td>
             </tr>
             <tr>
-                <td>Username:</td>
-                <td><input type="text" th:field="*{username}" /></td>
+
+                <td><input type="hidden"  th:field="*{username}" /></td>
             </tr>
             <tr>
                 <td>Text:</td>
@@ -40,5 +43,6 @@
         </table>
     </form>
 </div>
+
 </body>
 </html>

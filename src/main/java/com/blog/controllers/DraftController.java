@@ -4,9 +4,11 @@ package com.blog.controllers;
 import com.blog.entities.Blog1;
 import com.blog.entities.Draft;
 import com.blog.entities.Post;
+import com.blog.entities.User;
 import com.blog.services.DraftService;
 import com.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +29,8 @@ public class DraftController {
 
     @GetMapping("/blog/draft")
     public String drafts(Model model) {
-        List<Draft> listDraft = draftService.listAll();
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Draft> listDraft = draftService.draftgtList(user.getUsername());
         model.addAttribute("listDraft",listDraft);
 
         return "draft_page";
@@ -43,7 +46,8 @@ public class DraftController {
 
     @PostMapping(value = "/blog/draft/save")
     public String saveProduct(@ModelAttribute("draft") Draft draft) {
-
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        draft.setUsername(user.getUsername());
         draftService.save(draft);
 
         return "redirect:/blog/draft";

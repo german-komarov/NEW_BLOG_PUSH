@@ -2,8 +2,10 @@ package com.blog.controllers;
 
 
 import com.blog.entities.Post;
+import com.blog.entities.User;
 import com.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,8 @@ public class PostController {
     @PostMapping(value = "/blog/post/save")
     public String sendOffer(@ModelAttribute("post") Post post)
     {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        post.setUsername(user.getUsername());
         postService.save(post);
         return "offer_success";
     }

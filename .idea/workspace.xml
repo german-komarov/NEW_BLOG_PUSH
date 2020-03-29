@@ -2,8 +2,108 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eccbdc4c-249a-4584-b01e-706db0b976f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/Role.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/CommentRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/RoleRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/UserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/active_users.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_read_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/comment_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/denied_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/new_offer_text.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/registration.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/this_user.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/user_list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/Blog1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/Blog1Controller.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/DraftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/DraftController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/Blog1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/Blog1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/repositories/DraftRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/DraftRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/DraftService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/DraftService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L01.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L02.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L02.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L1S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L1S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L1S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L1S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L2S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L2S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L2S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L2S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L3S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L3S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/L3S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/L3S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/average.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/average.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/draft_editor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/draft_editor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/draft_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/draft_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/draft_reader.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/draft_reader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/edit_blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/edit_blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/edit_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/edit_offer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index_for_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index_for_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new_text.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new_text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/offer_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/offer_success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/offers_to_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/offers_to_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_offers_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_offers_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL01.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL02.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL02.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL1S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL1S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL1S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL1S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL2S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL2S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL2S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL2S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL3S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL3S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/resultL3S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/resultL3S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/save_draft.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/save_draft.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_offer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/Blog1Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/Blog1Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/DraftController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/DraftController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/PostController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/entities/Blog1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/entities/Blog1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/services/DraftService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/services/DraftService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L01.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L02.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L02.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L1S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L1S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L1S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L1S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L2S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L2S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L2S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L2S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L3S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L3S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/L3S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/L3S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/average.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/average.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/draft_editor.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/draft_editor.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/draft_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/draft_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/draft_reader.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/draft_reader.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/edit_blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/edit_blog.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/edit_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/edit_offer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/index_for_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index_for_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/main_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/new_text.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new_text.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/offer_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/offer_success.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/offers_to_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/offers_to_admin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/read_offers_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/read_offers_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/read_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/read_page.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL01.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL01.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL02.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL02.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL1S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL1S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL1S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL1S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL2S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL2S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL2S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL2S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL3S1_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL3S1_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/resultL3S2_CS.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/resultL3S2_CS.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/save_draft.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/save_draft.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_offer.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,14 +127,15 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
         <option value="HTML File" />
-        <option value="Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
@@ -44,7 +145,9 @@
     </option>
   </component>
   <component name="ProjectId" id="1YoSscggHBtepxGaJtS8IL01LCX" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -101,7 +204,7 @@
     </option>
   </component>
   <component name="SvnConfiguration">
-    <configuration />
+    <configuration>C:\Users\User\AppData\Roaming\Subversion</configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -132,11 +235,36 @@
       <workItem from="1584172504330" duration="1014000" />
       <workItem from="1584182977370" duration="5330000" />
       <workItem from="1584205962074" duration="713000" />
+      <workItem from="1584207432526" duration="799000" />
+      <workItem from="1584253464853" duration="454000" />
+      <workItem from="1584283100484" duration="640000" />
+      <workItem from="1584361151262" duration="2360000" />
+      <workItem from="1584373895600" duration="607000" />
+      <workItem from="1584514154836" duration="3567000" />
+      <workItem from="1584522580357" duration="3887000" />
+      <workItem from="1584527531534" duration="594000" />
+      <workItem from="1584554276527" duration="5981000" />
+      <workItem from="1584596548976" duration="954000" />
+      <workItem from="1584599783357" duration="452000" />
+      <workItem from="1584688132031" duration="3231000" />
+      <workItem from="1584725068610" duration="5162000" />
+      <workItem from="1584743541755" duration="786000" />
+      <workItem from="1584774936082" duration="187000" />
+      <workItem from="1585150631035" duration="5101000" />
+      <workItem from="1585374180341" duration="1261000" />
+      <workItem from="1585395611680" duration="6244000" />
+      <workItem from="1585414295926" duration="6510000" />
+      <workItem from="1585427937625" duration="870000" />
+      <workItem from="1585470120252" duration="3150000" />
+      <workItem from="1585475990237" duration="200000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
     <state x="361" y="72" key="#Assign_Data_Sources" timestamp="1584097292029">
@@ -155,10 +283,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="527" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1583737205190" />
-    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1584109760484">
+    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1585416730227">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1584109760484" />
+    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1585416730227" />
     <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1584188491757">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -167,42 +295,50 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="160" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1583741436995" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1584020988106">
+    <state x="374" y="8" key="CommitChangelistDialog2" timestamp="1584207694611">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584020988106" />
-    <state width="1493" height="21" key="GridCell.Tab.0.bottom" timestamp="1584190426586">
+    <state x="374" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584207694611" />
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1584527724664">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584190426586" />
-    <state width="1493" height="21" key="GridCell.Tab.0.center" timestamp="1584190426580">
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584527724664" />
+    <state x="651" y="307" width="258" height="210" key="Github.ShareDialog" timestamp="1584527771238">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1584190426580" />
-    <state width="1493" height="21" key="GridCell.Tab.0.left" timestamp="1584190426580">
+    <state x="651" y="307" width="258" height="210" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1584527771238" />
+    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1585476206141">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1584190426580" />
-    <state width="1493" height="21" key="GridCell.Tab.0.right" timestamp="1584190426580">
+    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585476206141" />
+    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1585476206140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1584190426580" />
-    <state width="1493" height="21" key="GridCell.Tab.1.bottom" timestamp="1584190426586">
+    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585476206140" />
+    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1585476206140">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1584190426586" />
-    <state width="1493" height="21" key="GridCell.Tab.1.center" timestamp="1584190426586">
+    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585476206140" />
+    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1585476206141">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1584190426586" />
-    <state width="1493" height="21" key="GridCell.Tab.1.left" timestamp="1584190426586">
+    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585476206141" />
+    <state width="1493" height="2" key="GridCell.Tab.1.bottom" timestamp="1585476206142">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1584190426586" />
-    <state width="1493" height="21" key="GridCell.Tab.1.right" timestamp="1584190426586">
+    <state width="1493" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585476206142" />
+    <state width="1493" height="2" key="GridCell.Tab.1.center" timestamp="1585476206141">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="21" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1584190426586" />
+    <state width="1493" height="2" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585476206141" />
+    <state width="1493" height="2" key="GridCell.Tab.1.left" timestamp="1585476206141">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="2" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585476206141" />
+    <state width="1493" height="2" key="GridCell.Tab.1.right" timestamp="1585476206142">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="2" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585476206142" />
     <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1584097022191">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -211,17 +347,41 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="299" y="68" key="Maven.ArtifactSearchDialog/0.0.1536.824@0.0.1536.824" timestamp="1583740205758" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1584205983081">
+    <state x="512" y="135" key="RollbackChangesDialog" timestamp="1584207482912">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1584205983081" />
-    <state x="425" y="187" key="run.anything.popup" timestamp="1583852125181">
+    <state x="512" y="135" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1584207482912" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1585476012313">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1583852125181" />
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1584183637036">
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585476012313" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584207460522">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1584183637036" />
+    <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1584207460522" />
+    <state x="540" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1584514849456">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="540" y="116" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.824@0.0.1536.824" timestamp="1584514849456" />
+    <state x="209" y="109" key="new project wizard" timestamp="1584289341202">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="209" y="109" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1584289341202" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1585475080422">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1585475080422" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1585156309651">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1585156309651" />
+    <state x="599" y="204" key="svn.repositoryBrowser" timestamp="1584527734227">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="599" y="204" key="svn.repositoryBrowser/0.0.1536.824@0.0.1536.824" timestamp="1584527734227" />
+    <state x="590" y="188" key="svn4idea.import.options" timestamp="1584527726796">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="590" y="188" key="svn4idea.import.options/0.0.1536.824@0.0.1536.824" timestamp="1584527726796" />
   </component>
 </project>

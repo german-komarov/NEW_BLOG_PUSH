@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Read Page</title>
+</head>
+<div align="right">
+    <a href="/admin/blog_admin">back</a>
+</div>
+<body>
+<h2>
+    Username : <span th:text="${blog1.username}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Category : <span th:text="${blog1.category}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Title : <span th:text="${blog1.category}" th:remove="tag"></span>
+</h2>
+
+
+<br>
+<h3><pre th:text="${blog1.content}" >Subtitle</pre></h3>
+
+
+
+</body>
+</html>
