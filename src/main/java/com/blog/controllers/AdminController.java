@@ -34,7 +34,7 @@ public class AdminController {
 
     HashMap<Long, Date> creation=new HashMap<>();
 
-    @GetMapping("/admin/blog_admin/new")
+    @GetMapping("/main/admin/blog_admin/new")
     public String showNewProductPage(Model model) {
         Blog1 blog1 = new Blog1();
         model.addAttribute("blog1", blog1);
@@ -42,7 +42,7 @@ public class AdminController {
         return "new_text";
     }
 
-    @GetMapping("/admin/blog_admin")
+    @GetMapping("/main/admin/blog_admin")
     public String admin_page(Model model)
     {
 
@@ -59,26 +59,26 @@ public class AdminController {
 
 
     //Save
-    @PostMapping(value = "/admin/blog_admin/save")
+    @PostMapping(value = "/main/admin/blog_admin/save")
     public String saveProduct(@ModelAttribute("blog1") Blog1 blog1) {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         blog1.setUsername(user.getUsername());
         service.save(blog1);
-        return "redirect:/admin/blog_admin";
+        return "redirect:/main/admin/blog_admin";
     }
 
-    @PostMapping(value = "/admin/blog_admin/edit/save")
+    @PostMapping(value = "/main/admin/blog_admin/edit/save")
     public String saveEditedBlog(@ModelAttribute("blog1") Blog1 blog1)
     {
         long id =blog1.getId();
         blog1.setCreatedAt(creation.get(id));
         service.save(blog1);
 
-        return "redirect:/admin/blog_admin";
+        return "redirect:/main/admin/blog_admin";
     }
 
 
-    @GetMapping("/admin/blog_admin/offers")
+    @GetMapping("/main/admin/blog_admin/offers")
     public String offersToAdmin(Model model)
     {
         List<Post> listPost=postService.listAll();
@@ -86,7 +86,7 @@ public class AdminController {
         return "offers_to_admin";
     }
 
-    @GetMapping("/admin/blog_admin/offers/text/{id}")
+    @GetMapping("/main/admin/blog_admin/offers/text/{id}")
     public ModelAndView readOffers(@PathVariable(name = "id") int id)
     {
         ModelAndView mav=new ModelAndView("read_offers_page");
@@ -97,7 +97,7 @@ public class AdminController {
     }
 
     //EDIT
-    @GetMapping("/admin/blog_admin/offers/edit/{id}")
+    @GetMapping("/main/admin/blog_admin/offers/edit/{id}")
     public ModelAndView editOfferPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_offer");
         Post post=postService.get(id);
@@ -106,23 +106,23 @@ public class AdminController {
         return mav;
     }
 
-    @PostMapping(value = "/admin/blog_admin/offers/edit/save")
+    @PostMapping(value = "/main/admin/blog_admin/offers/edit/save")
     public String saveEditedOffer(@ModelAttribute("post") Post post)
     {
         postService.save(post);
-        return "redirect:/admin/blog_admin/offers";
+        return "redirect:/main/admin/blog_admin/offers";
     }
 
     //DELETE
-    @GetMapping("/admin/blog_admin/offers/delete/{id}")
+    @GetMapping("/main/admin/blog_admin/offers/delete/{id}")
     public String deleteOffer(@PathVariable(name = "id") int id) {
         postService.delete(id);
-        return "redirect:/admin/blog_admin/offers";
+        return "redirect:/main/admin/blog_admin/offers";
     }
 
 
 
-    @GetMapping("/admin/blog_admin/offers/accept/{id}")
+    @GetMapping("/main/admin/blog_admin/offers/accept/{id}")
     public String acceptOffer(Model model,@PathVariable(name = "id") int id)
     {
         Post post=postService.get(id);
@@ -136,16 +136,16 @@ public class AdminController {
 
     }
 
-    @PostMapping("/admin/blog_admin/offers/accept/save")
+    @PostMapping("/main/admin/blog_admin/offers/accept/save")
     public String acceptAndSaveOffer(@ModelAttribute("blog1") Blog1 blog1)
     {
         service.save(blog1);
-        return "redirect:/admin/blog_admin";
+        return "redirect:/main/admin/blog_admin";
 
     }
 
     //ADMIN PAGE
-    @GetMapping("/admin")
+    @GetMapping("/main/admin")
     public String admin()
     {
         return "admin";
@@ -153,7 +153,7 @@ public class AdminController {
 
 
     //READ
-    @GetMapping("/admin/blog_admin/text/{id}")
+    @GetMapping("/main/admin/blog_admin/text/{id}")
     public ModelAndView read(@PathVariable(name = "id") int id)
     {
         ModelAndView mav=new ModelAndView("admin_read_page");
@@ -167,7 +167,7 @@ public class AdminController {
 
 
     //Filter
-    @PostMapping("/admin/blog_admin/filter")
+    @PostMapping("/main/admin/blog_admin/filter")
     public String filterAdmin(@RequestParam String filter, Model model)
     {
         List<Blog1> listBlog1;
@@ -187,7 +187,7 @@ public class AdminController {
     }
 
     //EDIT
-    @GetMapping("/admin/blog_admin/edit/{id}")
+    @GetMapping("/main/admin/blog_admin/edit/{id}")
     public ModelAndView showEditBlogPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_blog");
         Blog1 blog1 = service.get(id);
@@ -197,15 +197,15 @@ public class AdminController {
     }
 
     //DELETE
-    @GetMapping("/admin/blog_admin/delete/{id}")
+    @GetMapping("/main/admin/blog_admin/delete/{id}")
     public String deleteBlog(@PathVariable(name = "id") int id) {
         creation.remove((long)id);
         service.delete(id);
-        return "redirect:/admin/blog_admin";
+        return "redirect:/main/admin/blog_admin";
     }
 
     //Get All Users
-    @GetMapping("/admin/users")
+    @GetMapping("/main/admin/users")
     public String getAllUsers(Model model)
     {
         List<User> userList=userService.allUsers();
@@ -213,7 +213,7 @@ public class AdminController {
         return "user_list";
 
     }
-    @GetMapping("/admin/users/this_user/{id}")
+    @GetMapping("/main/admin/users/this_user/{id}")
     public String thisUser(@PathVariable(name="id") int id,Model model)
     {
         User user=userService.findUserById(id);
@@ -226,7 +226,7 @@ public class AdminController {
     @Autowired
     private SessionRegistry sessionRegistry;
 
-    @GetMapping("/admin/active_users")
+    @GetMapping("/main/admin/active_users")
     public String listLoggedInUsers(Model model) {
         List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
         List<User> userList=new ArrayList<>();
@@ -240,7 +240,7 @@ public class AdminController {
     }
 
     //FILTER
-    @PostMapping("/admin/users/filter")
+    @PostMapping("/main/admin/users/filter")
     public String filter(@RequestParam String filter, Model model)
     {
         List<User> userList=new ArrayList<User>();

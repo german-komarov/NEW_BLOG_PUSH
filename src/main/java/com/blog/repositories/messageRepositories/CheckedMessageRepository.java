@@ -1,4 +1,8 @@
 package com.blog.repositories.messageRepositories;
 
-public interface CheckedMessageRepository {
+import com.blog.entities.message.CheckedMessage;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface CheckedMessageRepository extends JpaRepository<CheckedMessage,Long> {
 }

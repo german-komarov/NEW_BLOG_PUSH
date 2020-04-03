@@ -16,12 +16,12 @@
     Username :
     <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
 </div>
-<div><a href="/">Main Page</a> </div>
+<div><a href="/main">Main Page</a> </div>
 <div align="center">
 
     <h1>Blog List</h1>
     <br/><br/>
-    <form method="post" action="/blog/filter">
+    <form method="post" action="/main/blog/filter">
         <input type="text" placeholder="Search by category" name="filter">
         <button type="submit">Find</button>
     </form>
@@ -47,16 +47,16 @@
             <td th:text="${blog1.username}">User</td>
 
             <td>
-                <a th:href="@{'/blog/text/' + ${blog1.id}}">Read</a>
+                <a th:href="@{'/main/blog/text/' + ${blog1.id}}">Read</a>
             </td>
         </tr>
         </tbody>
     </table>
 
     <br>
-    <a href="/blog/draft">Drafts</a>
+    <a href="/main/blog/draft">Drafts</a>
     <br>
-    <a href="/blog/post">Post</a>
+    <a href="/main/blog/post">Post</a>
 </div>
 
 </body>

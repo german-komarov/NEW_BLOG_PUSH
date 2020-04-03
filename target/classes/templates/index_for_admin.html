@@ -14,14 +14,14 @@
 <br>
 <div>Username : <span th:text="${#authentication.getPrincipal().getUsername()}"></span></div>
 <br>
-<div><a href="/">Main Page</a> </div>
+<div><a href="/main">Main Page</a> </div>
 <br>
-<div><a href="/admin">Admin Page</a></div>
+<div><a href="/main/admin">Admin Page</a></div>
 <div align="center">
     <h1>Blog List</h1>
-    <a href="/admin/blog_admin/new">New Blog</a>
+    <a href="/main/admin/blog_admin/new">New Blog</a>
     <br/><br/>
-    <form method="post" action="/admin/blog_admin/filter">
+    <form method="post" action="/main/admin/blog_admin/filter">
         <input type="text" placeholder="Search by category" name="filter">
         <button type="submit">Find</button>
     </form>
@@ -49,17 +49,17 @@
             <td th:text="${blog1.username}">User</td>
 
             <td>
-                <a th:href="@{'/admin/blog_admin/text/' + ${blog1.id}}">Read</a>
+                <a th:href="@{'/main/admin/blog_admin/text/' + ${blog1.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/admin/blog_admin/edit/' + ${blog1.id}}">Edit</a>
+                <a th:href="@{'/main/admin/blog_admin/edit/' + ${blog1.id}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/admin/blog_admin/delete/' + ${blog1.id}}">Delete</a>
+                <a th:href="@{'/main/admin/blog_admin/delete/' + ${blog1.id}}">Delete</a>
             </td>
         </tr>
         </tbody>
     </table>
-    <a href="/admin/blog_admin/offers">Offers</a>
+    <a href="/main/admin/blog_admin/offers">Offers</a>
 </div>
 </body>
 </html>

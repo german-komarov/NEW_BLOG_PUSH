@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Read Message</title>
 </head>
+<div align="left">
+    <a href="/main/message/deleteMessage">back</a>
+</div>
 <body>
-$END$
+<h2 th:if="${message.deletedFrom}==${sent}">
+    To: <span th:text="${message.receiver}" th:remove="tag"></span>
+</h2>
+<h2 th:if="${message.deletedFrom}==${check}">
+    From: <span th:text="${message.sender}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Subject : <span th:text="${message.subject}" th:remove="tag"></span>
+</h2>
+<br>
+<h2 th:if="${message.deletedFrom}==${sent}">
+    Sent At: <span th:text="${message.originalTime}" th:remove="tag"></span>
+</h2>
+<h2 th:if="${message.deletedFrom}==${check}">
+    Received At: <span th:text="${message.originalTime}" th:remove="tag"></span>
+</h2>
+
+
+<br>
+<h3><pre th:text="${message.content}" >Subtitle</pre></h3>
+
+
+
+
 </body>
 </html>

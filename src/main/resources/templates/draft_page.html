@@ -9,7 +9,7 @@
 
 <div align="center">
     <h1>Draft List</h1>
-    <a href="/blog/draft/new">New Draft</a>
+    <a href="/main/blog/draft/new">New Draft</a>
     <br><br>
     <table border="1" cellpadding="10">
         <thead>
@@ -29,14 +29,14 @@
             <td th:text="${draft.username}">User</td>
 
             <td>
-                <a th:href="@{'/blog/draft/text/' + ${draft.id}}">Read</a>
+                <a th:href="@{'/main/blog/draft/text/' + ${draft.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/blog/draft/edit/' + ${draft.id}}">Edit</a>
+                <a th:href="@{'/main/blog/draft/edit/' + ${draft.id}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/blog/draft/delete/' + ${draft.id}}">Delete</a>
+                <a th:href="@{'/main/blog/draft/delete/' + ${draft.id}}">Delete</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/blog/draft/post/' + ${draft.id}}">Offer</a>
+                <a th:href="@{'/main/blog/draft/post/' + ${draft.id}}">Offer</a>
             </td>
         </tr>
         </tbody>

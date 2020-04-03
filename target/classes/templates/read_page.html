@@ -6,7 +6,7 @@
     <title>Read Blog</title>
 </head>
 <div align="right">
-    <a href="/blog">back</a>
+    <a href="/main/blog">back</a>
 </div>
 <body>
 <h2>
@@ -26,7 +26,7 @@
 <h3><pre th:text="${blog1.content}" >Subtitle</pre></h3>
 
 <br><br>
-<a th:href="@{'/blog/text/'+${blog1.id}+'/comments'}"><span>Comments(<span th:text="${count}"/>)</span></a>
+<a th:href="@{'/main/blog/text/'+${blog1.id}+'/comments'}"><span>Comments(<span th:text="${count}"/>)</span></a>
 
 
 </body>

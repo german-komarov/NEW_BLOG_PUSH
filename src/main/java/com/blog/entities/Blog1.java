@@ -8,7 +8,8 @@ import java.util.Date;
 
 @Entity
 @Table(name="blog1")
-public class Blog1 {
+public class
+Blog1 {
 
 
     private Long id;

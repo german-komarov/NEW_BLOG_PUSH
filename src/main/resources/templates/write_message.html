@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+    <meta charset="utf-8" />
+    <title>Write message</title>
 </head>
 <body>
-$END$
+<div align="left">
+    <a href="/main/message">back</a>
+</div>
+<div align="center">
+    <h1>Message</h1>
+    <br />
+    <form action="#" th:action="@{/main/message/writeMessage/send}" th:object="${sentMessage}"
+          method="post">
+
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>To:</td>
+                <td><input type="text" placeholder="Whom" th:field="*{receiver}" /></td>
+            </tr>
+            <tr>
+                <td>Subject</td>
+                <td><input type="text" th:field="*{subject}" /></td>
+            </tr>
+            <tr>
+                <td><input type="hidden"  th:field="*{sender}" readonly="readonly"/></td>
+            </tr>
+
+            <tr>
+                <td>Content:</td>
+                <td><textarea type="text" Cols="50" placeholder="Type message" th:field="*{content}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><button type="submit">Send</button> </td>
+            </tr>
+        </table>
+    </form>
+</div>
 </body>
 </html>

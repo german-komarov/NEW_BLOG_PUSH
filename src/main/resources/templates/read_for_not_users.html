@@ -1,10 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Read Blog</title>
 </head>
+<div align="right">
+    <a href="/">back</a>
+</div>
 <body>
-$END$
+<h2>
+    Author : <span th:text="${blog1.username}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Category : <span th:text="${blog1.category}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Title : <span th:text="${blog1.category}" th:remove="tag"></span>
+</h2>
+
+
+<br>
+<h3><pre th:text="${blog1.content}" >Subtitle</pre></h3>
+
 </body>
 </html>

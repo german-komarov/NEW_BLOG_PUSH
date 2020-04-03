@@ -1,19 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Main Page</title>
+    <meta charset="utf-8"/>
+    <title>Blog page</title>
 </head>
 <body>
-<h1>MAIN PAGE </h1>
+
+<div align="left">
+    <form action="/logout" method="post">
+        <input type="submit" value="Sign Out"/>
+    </form>
+</div>
 <br>
-<a href="/blog">Blog</a>
-<br><br>
-<a href="/admin">Admin</a>
-<br><br>
-<a href="/average">Average</a>
-<br><br>
-<a href="/registration">Registration</a>
+<div align="left">
+    Username :
+    <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+</div>
+
+<div align="center>">
+    <a href="/main/blog">Blog</a>
+    <br>
+    <a th:if="${role}==admin" href="/main/admin">Admin</a>
+    <br>
+    <a th:href="@{/main/message}"><span>Messages(<span th:text="${counter}"/>)</span></a>
+</div>
 
 </body>
 </html>

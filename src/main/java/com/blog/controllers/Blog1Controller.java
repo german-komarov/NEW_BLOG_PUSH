@@ -1,13 +1,11 @@
 package com.blog.controllers;
 
 
-import com.blog.entities.Blog1;
-import com.blog.entities.Comment;
-import com.blog.entities.Post;
-import com.blog.entities.User;
+import com.blog.entities.*;
 import com.blog.services.Blog1Service;
 import com.blog.services.CommentService;
 import com.blog.services.PostService;
+import com.blog.services.messageServices.NewMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -17,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 
 import java.util.List;
+import java.util.Set;
 
 
 @Controller
@@ -28,14 +27,9 @@ public class Blog1Controller {
     @Autowired
     private CommentService commentService;
 
-    @GetMapping("/")
-    public String main_page()
-    {
-        return "main_page";
-    }
 
 
-    @GetMapping("/blog")
+    @GetMapping("/main/blog")
     public String viewHomePage(Model model) {
         List<Blog1> listBlog1 = service.listAll();
         model.addAttribute("listBlog1", listBlog1);
@@ -44,7 +38,7 @@ public class Blog1Controller {
     }
 
     //READ
-    @GetMapping("/blog/text/{id}")
+    @GetMapping("/main/blog/text/{id}")
     public ModelAndView read(@PathVariable(name = "id") int id)
     {
         //List of comments
@@ -60,7 +54,7 @@ public class Blog1Controller {
         return mav;
     }
 
-    @GetMapping("/blog/text/{id}/comments")
+    @GetMapping("/main/blog/text/{id}/comments")
     public String comment(@PathVariable(name = "id") int id,Model model)
     {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -75,18 +69,18 @@ public class Blog1Controller {
 
     }
 
-    @PostMapping(value = "/blog/text/comments/add")
+    @PostMapping(value = "/main/blog/text/comments/add")
     public String addComment(@ModelAttribute("comment") Comment comment)
     {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         comment.setAuthor(user.getUsername());
         commentService.save(comment);
-        String path="redirect:/blog/text/"+comment.getBlogid()+"/comments";
+        String path="redirect:/main/blog/text/"+comment.getBlogid()+"/comments";
         return path;
 
     }
     //DELETE
-    @GetMapping("/blog/text/{blogid}/comments/delete/{id}")
+    @GetMapping("/main/blog/text/{blogid}/comments/delete/{id}")
     public String deleteBlog(@PathVariable(name = "blogid") int blogid,@PathVariable(name="id") int id) {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Comment comment=commentService.get((long)id);
@@ -95,13 +89,13 @@ public class Blog1Controller {
             return "denied_page";
         }
         commentService.delete(id);
-        String path="redirect:/blog/text/"+blogid+"/comments";
+        String path="redirect:/main/blog/text/"+blogid+"/comments";
         return path;
     }
 
 
     //FILTER
-    @PostMapping("/blog/filter")
+    @PostMapping("/main/blog/filter")
     public String filter(@RequestParam String filter, Model model)
     {
         List<Blog1> listBlog1;

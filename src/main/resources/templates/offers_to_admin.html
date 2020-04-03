@@ -28,14 +28,14 @@
             <td th:text="${post.username}">User</td>
 
             <td>
-                <a th:href="@{'/admin/blog_admin/offers/text/' + ${post.id}}">Read</a>
+                <a th:href="@{'/main/admin/blog_admin/offers/text/' + ${post.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/admin/blog_admin/offers/edit/' + ${post.id}}">Edit</a>
+                <a th:href="@{'/main/admin/blog_admin/offers/edit/' + ${post.id}}">Edit</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/admin/blog_admin/offers/delete/' + ${post.id}}">Delete</a>
+                <a th:href="@{'/main/admin/blog_admin/offers/delete/' + ${post.id}}">Delete</a>
                 &nbsp;&nbsp;&nbsp;
-                <a th:href="@{'/admin/blog_admin/offers/accept/' + ${post.id}}">Accept</a>
+                <a th:href="@{'/main/admin/blog_admin/offers/accept/' + ${post.id}}">Accept</a>
 
             </td>
         </tr>
@@ -44,7 +44,7 @@
         </tbody>
     </table>
 
-    <a href="/admin/blog_admin">Blog List</a>
+    <a href="/main/admin/blog_admin">Blog List</a>
 </div>
 </body>
 </html>

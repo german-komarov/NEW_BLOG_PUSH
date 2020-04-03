@@ -27,7 +27,7 @@ public class DraftController {
 
 
 
-    @GetMapping("/blog/draft")
+    @GetMapping("/main/blog/draft")
     public String drafts(Model model) {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         List<Draft> listDraft = draftService.draftgtList(user.getUsername());
@@ -36,7 +36,7 @@ public class DraftController {
         return "draft_page";
     }
 
-    @GetMapping("/blog/draft/new")
+    @GetMapping("/main/blog/draft/new")
     public String new_draft(Model model)
     {
         Draft draft =new Draft();
@@ -44,16 +44,16 @@ public class DraftController {
         return "save_draft";
     }
 
-    @PostMapping(value = "/blog/draft/save")
+    @PostMapping(value = "/main/blog/draft/save")
     public String saveProduct(@ModelAttribute("draft") Draft draft) {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         draft.setUsername(user.getUsername());
         draftService.save(draft);
 
-        return "redirect:/blog/draft";
+        return "redirect:/main/blog/draft";
     }
 
-    @GetMapping("/blog/draft/text/{id}")
+    @GetMapping("/main/blog/draft/text/{id}")
     public ModelAndView read(@PathVariable(name = "id") int id)
     {
         ModelAndView mav=new ModelAndView("draft_reader");
@@ -64,7 +64,7 @@ public class DraftController {
     }
 
     //EDIT
-    @GetMapping("/blog/draft/edit/{id}")
+    @GetMapping("/main/blog/draft/edit/{id}")
     public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("draft_editor");
         Draft draft = draftService.get(id);
@@ -74,13 +74,13 @@ public class DraftController {
     }
 
     //DELETE
-    @GetMapping("/blog/draft/delete/{id}")
+    @GetMapping("/main/blog/draft/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") int id) {
         draftService.delete(id);
-        return "redirect:/blog/draft";
+        return "redirect:/main/blog/draft";
     }
 
-    @GetMapping("/blog/draft/post/{id}")
+    @GetMapping("/main/blog/draft/post/{id}")
     public String offerDraft(Model model,@PathVariable(name = "id") int id)
     {
         Draft draft=draftService.get(id);

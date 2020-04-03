@@ -32,4 +32,9 @@ public class CommentService {
     public void delete(long id) {
         commentRepository.deleteById(id);
     }
+
+    public List<Comment> findByBlogid(int id)
+    {
+        return commentRepository.findByBlogid(id);
+    }
 }

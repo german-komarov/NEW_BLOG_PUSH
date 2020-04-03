@@ -1,4 +1,7 @@
 package com.blog.repositories.messageRepositories;
 
-public class DeletedMessageRepository {
+import com.blog.entities.message.DeletedMessage;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface DeletedMessageRepository extends JpaRepository<DeletedMessage,Long> {
 }

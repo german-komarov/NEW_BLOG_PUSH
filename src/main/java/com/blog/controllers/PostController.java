@@ -18,7 +18,7 @@ public class PostController {
     @Autowired
     PostService postService;
 
-    @GetMapping("/blog/post")
+    @GetMapping("/main/blog/post")
     public String postUserBlog(Model model)
     {
         Post post=new Post();
@@ -26,7 +26,7 @@ public class PostController {
         return "user_offer";
     }
 
-    @PostMapping(value = "/blog/post/save")
+    @PostMapping(value = "/main/blog/post/save")
     public String sendOffer(@ModelAttribute("post") Post post)
     {
         User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();

@@ -6,13 +6,13 @@
     <title>Comments</title>
 </head>
 <div align="left">
-    <a th:href="@{'/blog/text/' + ${blogid}}">back</a>
+    <a th:href="@{'/main/blog/text/' + ${blogid}}">back</a>
 </div>
 <body>
 <div align="center">
 
 
-    <form action="#" th:action="@{/blog/text/comments/add}" th:object="${comment}"
+    <form action="#" th:action="@{/main/blog/text/comments/add}" th:object="${comment}"
           method="post">
 
         <table border="0" cellpadding="10">
@@ -37,7 +37,7 @@
     <pre th:text="${comment.content}"/>
     <h6 th:text="${comment.createdAt}"/>
 
-    <a th:href="@{'/blog/text/' + ${blogid}+'/comments/delete/'+${comment.id}}" th:if="${comment.author}==${user}">delete</a>
+    <a th:href="@{'/main/blog/text/' + ${blogid}+'/comments/delete/'+${comment.id}}" th:if="${comment.author}==${user}">delete</a>
 
     <br>
 

@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Messages</title>
 </head>
+<div align="left">
+    Username :
+    <span th:text="${#authentication.getPrincipal().getUsername()}"></span>
+</div>
+<div align="left">
+
+    <a href="/main">Main page</a>
+</div>
+<div align="left">
+    <a href="/main/message/writeMessage">Write Message</a>
+    <br>
+    <a href="/main/message/sentMessage">Sent messages</a>
+    <br>
+    <a href="/main/message/deleteMessage">Deleted Messages</a>
+
+</div>
 <body>
-$END$
+    <div align="center" th:if="${newCounter}!=0" >
+        <h2>New messages</h2>
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+
+                <th>From</th>
+                <th>Subject</th>
+
+                <th>Received At</th>
+                <th>Options</th>
+                <th>Other Options</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="nm : ${newList}">
+                <td th:text="${nm.sender}">Sender</td>
+                <td th:text="${nm.subject}">Subject</td>
+                <td th:text="${nm.receivedAt}">Received At</td>
+                
+                <td>
+                    <a th:href="@{'/main/message/readNewMessage/' + ${nm.id}}">Read</a>
+                </td>
+                <td>
+                    <a th:href="@{'/main/message/delete/NewMessage/'+${nm.id}}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+    </div>
+
+    <div align="center">
+        <h2>Messages</h2>
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+
+                <th>From</th>
+                <th>Subject</th>
+                <th>Received At</th>
+                <th>Options</th>
+                <th>Other options</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="cm : ${checkedList}">
+                <td th:text="${cm.sender}">Sender</td>
+                <td th:text="${cm.subject}">Subject</td>
+                <td th:text="${cm.receivedAt}">Received At</td>
+
+                <td>
+                    <a th:href="@{'/main/message/readCheckedMessage/' + ${cm.id}}">Read</a>
+                </td>
+                <td>
+                    <a th:href="@{'/main/message/delete/CheckedMessage/'+${cm.id}}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+
+
+    </div>
+
+
 </body>
 </html>

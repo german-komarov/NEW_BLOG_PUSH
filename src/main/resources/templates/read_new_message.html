@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>$Title$</title>
+    <title>Read Message</title>
 </head>
+<div align="left">
+    <a href="/main/message">back</a>
+</div>
 <body>
-$END$
+<h2>
+    From: <span th:text="${message.sender}" th:remove="tag"></span>
+</h2>
+<br>
+<h2>
+    Subject : <span th:text="${message.subject}" th:remove="tag"></span>
+</h2>
+<br>
+<h4>
+    Received at : <span th:text="${message.receivedAt}" th:remove="tag"></span>
+</h4>
+
+
+<br>
+<h3><pre th:text="${message.content}" >Subtitle</pre></h3>
+
+<br><br>
+<a th:href="@{'/main/message/answer/'+${message.sender}}">Answer</a>
+
+
 </body>
 </html>

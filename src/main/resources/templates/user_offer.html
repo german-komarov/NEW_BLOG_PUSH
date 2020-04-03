@@ -6,14 +6,14 @@
     <title>Create New Post</title>
 </head>
 <div align="right">
-    <a href="/blog">back</a>
+    <a href="/main/blog">back</a>
 </div>
 <body>
 <div align="center">
     <h1>Create New Text</h1>
     <br>
     <!--/*@thymesVar id="draft" type="com.blog.entities.Draft"*/-->
-    <form action="#" th:action="@{/blog/post/save}" th:object="${post}"
+    <form action="#" th:action="@{/main/blog/post/save}" th:object="${post}"
           method="post">
 
         <table border="0" cellpadding="10">
