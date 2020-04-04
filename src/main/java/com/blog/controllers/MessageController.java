@@ -169,6 +169,11 @@ public class MessageController {
     @GetMapping("/main/message/delete/deleteAtAll/{id}")
     public String deleteAtAll(@PathVariable(name="id") long id)
     {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!deletedMessageService.get(id).getDeleter().equals(user.getUsername()))
+        {
+            return "denied_page";
+        }
         deletedMessageService.delete(id);
         return "deleted_successful";
     }
@@ -280,6 +285,11 @@ public class MessageController {
     @GetMapping("/main/message/delete/AreYouSureDelete/{id}")
     public String areYouSureDelete(@PathVariable(name="id") long id,Model model)
     {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!deletedMessageService.get(id).getDeleter().equals(user.getUsername()))
+        {
+            return "denied_page";
+        }
         model.addAttribute("id",id);
         return "are_you_sure_delete";
 
@@ -360,6 +370,72 @@ public class MessageController {
         checkedMessageService.save(checkedMessage);
         deletedMessageService.delete(id);
         return "successfully_restored";
+
+
+    }
+
+    @GetMapping("/main/message/delete/AreYouSureDeleteFromBoth/{id}")
+    public String areYouSureDeleteFromBoth(@PathVariable(name="id") long id,Model model)
+    {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!sentMessageService.get(id).getSender().equals(user.getUsername()))
+        {
+            return "denied_page";
+        }
+        model.addAttribute("id",id);
+        return "are_you_sure_delete_from_both";
+    }
+
+    @GetMapping("/main/message/delete/deleteAtAllFromBoth/{id}")
+    public String deleteAtAllFromBoth(@PathVariable(name="id") long id)
+    {
+        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!newMessageService.findBySentid(id).isEmpty())
+        {
+            if(!newMessageService.findBySentid(id).get(0).getSender().equals(user.getUsername()))
+            {
+                return "denied_page";
+            }
+            newMessageService.delete(newMessageService.findBySentid(id).get(0).getId());
+            sentMessageService.delete(id);
+            return "successfully_deleted_from_both";
+        }
+
+
+        if(!checkedMessageService.findBySentid(id).isEmpty())
+        {
+            if(!checkedMessageService.findBySentid(id).get(0).getSender().equals(user.getUsername()))
+            {
+                return "denied_page";
+            }
+            checkedMessageService.delete(checkedMessageService.findBySentid(id).get(0).getId());
+            sentMessageService.delete(id);
+            return "successfully_deleted_from_both";
+        }
+
+        if (!deletedMessageService.findBySentid(id).isEmpty())
+        {
+            if(!deletedMessageService.findBySentid(id).get(0).getSender().equals(user.getUsername()))
+            {
+                return "denied_page";
+            }
+            deletedMessageService.delete(deletedMessageService.findBySentid(id).get(0).getId());
+            sentMessageService.delete(id);
+            return "successfully_deleted_from_both";
+        }
+
+        if(sentMessageService.get(id).getSender().equals(user.getUsername()))
+        {
+            sentMessageService.delete(id);
+            return "already_deleted";
+        }
+        else
+        {
+            return "denied_page";
+        }
+
+
+
 
 
     }

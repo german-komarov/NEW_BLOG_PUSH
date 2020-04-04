@@ -16,14 +16,14 @@ public class DeletedMessage {
     private String subject;
     private Date originalTime;
     private Date deletedAt;
-    private long sent_id;
+    private long sentid;
 
     public long getSent_id() {
-        return sent_id;
+        return sentid;
     }
 
     public void setSent_id(long sent_id) {
-        this.sent_id = sent_id;
+        this.sentid = sent_id;
     }
 
     private String deletedFrom;

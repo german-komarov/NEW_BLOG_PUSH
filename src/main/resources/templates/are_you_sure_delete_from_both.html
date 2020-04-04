@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" />
+    <title>Are You Sure Delete</title>
+</head>
+<div align="center">
+    Are your sure that you want to delete this message from both??
+    <a th:href="@{'/main/message/delete/deleteAtAllFromBoth/' + ${id}}">Yes</a>
+    <a th:href="@{/main/message/sentMessage}">No</a>
+
+</div>
+<body>
+
+</body>
+</html>

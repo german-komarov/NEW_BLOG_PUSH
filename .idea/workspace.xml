@@ -2,89 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eccbdc4c-249a-4584-b01e-706db0b976f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/already_deleted.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/are_you_sure_delete_from_both.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/successfully_deleted_from_both.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/config/WebSecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/Blog1Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/Blog1Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/DraftController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/DraftController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/PostController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/Blog1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/Blog1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/CheckedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/CheckedMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/DeletedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/DeletedMessage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/NewMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/NewMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/SentMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/SentMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/CheckedMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/CheckedMessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/DeletedMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/DeletedMessageRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/NewMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/NewMessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/SentMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/SentMessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/CommentService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/CommentService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/CheckedMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/CheckedMessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/DeletedMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/DeletedMessageService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/NewMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/NewMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/SentMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/SentMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/active_users.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/active_users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/admin_read_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/admin_read_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/answer_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/answer_message.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/are_you_sure_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/are_you_sure_delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/comment_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/comment_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/deleted_messages_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/deleted_messages_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/deleted_successful.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/deleted_successful.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/denied_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/denied_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/draft_editor.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/draft_editor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/draft_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/draft_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/draft_reader.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/draft_reader.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/edit_blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/edit_blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/edit_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/edit_offer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/entering_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/entering_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/index_for_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/index_for_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/main_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/messages.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/messages.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new_offer_text.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new_offer_text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/new_text.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/new_text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/offer_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/offer_success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/offers_to_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/offers_to_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_deleted_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_deleted_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_for_not_users.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_for_not_users.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_new_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_new_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_offers_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_offers_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/read_sent_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/read_sent_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/save_draft.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/save_draft.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sent_messages_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sent_messages_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/successfully_restored.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/successfully_restored.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/successfully_sent_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/successfully_sent_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/this_user.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/this_user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/user_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/user_offer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/write_message.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/write_message.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/config/WebSecurityConfig.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/Blog1Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/Blog1Controller.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/DraftController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/DraftController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/PostController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/entities/Blog1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/entities/Blog1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/draft_editor.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/draft_editor.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/draft_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/draft_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/draft_reader.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/draft_reader.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/edit_blog.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/edit_blog.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/edit_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/edit_offer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/index_for_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/index_for_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/main_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/main_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/new_text.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/new_text.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/offer_success.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/offer_success.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/offers_to_admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/offers_to_admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/read_offers_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/read_offers_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/read_page.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/read_page.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/save_draft.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/save_draft.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/user_offer.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/user_offer.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -253,7 +184,9 @@
       <workItem from="1585835838101" duration="3130000" />
       <workItem from="1585856274183" duration="717000" />
       <workItem from="1585904088969" duration="5574000" />
-      <workItem from="1585918784234" duration="3557000" />
+      <workItem from="1585918784234" duration="7230000" />
+      <workItem from="1585991982606" duration="2763000" />
+      <workItem from="1585998557793" duration="398000" />
     </task>
     <servers />
   </component>
@@ -272,6 +205,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="72" key="#Auto_Import/0.0.1536.824@0.0.1536.824" timestamp="1585506457542" />
+    <state x="361" y="72" key="#Inspections" timestamp="1585947027616">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="72" key="#Inspections/0.0.1536.824@0.0.1536.824" timestamp="1585947027616" />
     <state x="361" y="72" key="#SQL_Dialects" timestamp="1585928437509">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -312,38 +249,38 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="651" y="307" width="258" height="210" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1584527771238" />
-    <state width="1493" height="666" key="GridCell.Tab.0.bottom" timestamp="1585933473183">
+    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585933473183" />
-    <state width="1493" height="666" key="GridCell.Tab.0.center" timestamp="1585933473182">
+    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585933473182" />
-    <state width="1493" height="666" key="GridCell.Tab.0.left" timestamp="1585933473182">
+    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585933473182" />
-    <state width="1493" height="666" key="GridCell.Tab.0.right" timestamp="1585933473182">
+    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585933473182" />
-    <state width="1493" height="666" key="GridCell.Tab.1.bottom" timestamp="1585933473184">
+    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.1.bottom" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585933473184" />
-    <state width="1493" height="666" key="GridCell.Tab.1.center" timestamp="1585933473183">
+    <state width="1493" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.1.center" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585933473183" />
-    <state width="1493" height="666" key="GridCell.Tab.1.left" timestamp="1585933473183">
+    <state width="1493" height="2" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.1.left" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585933473183" />
-    <state width="1493" height="666" key="GridCell.Tab.1.right" timestamp="1585933473184">
+    <state width="1493" height="2" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="2" key="GridCell.Tab.1.right" timestamp="1585998960744">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="666" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585933473184" />
+    <state width="1493" height="2" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
     <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1584097022191">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -356,10 +293,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="512" y="135" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1584207482912" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1585918785156">
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1585998558097">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585918785156" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585998558097" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584207460522">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

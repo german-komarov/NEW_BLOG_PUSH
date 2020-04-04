@@ -64,6 +64,12 @@ public class DeletedMessageService {
     }
 
 
+    public List<DeletedMessage> findBySentid(long sentid) {
+        return em.createQuery("SELECT u FROM DeletedMessage u WHERE u.sentid=:paramSentid", DeletedMessage.class)
+                .setParameter("paramSentid", sentid).getResultList();
+    }
+
+
 
 
 

@@ -45,4 +45,9 @@ public class NewMessageService {
         return em.createQuery("SELECT u FROM NewMessage u WHERE u.receiver like :paramReceiver and u.id = :paramId", NewMessage.class)
                 .setParameter("paramReceiver", receiver).setParameter("paramId",id).getSingleResult();
     }
+
+    public List<NewMessage> findBySentid(long sentid) {
+        return em.createQuery("SELECT u FROM NewMessage u WHERE u.sentid=:paramSentid", NewMessage.class)
+                .setParameter("paramSentid", sentid).getResultList();
+    }
 }

@@ -13,14 +13,14 @@ public class CheckedMessage {
     private String content;
     private String subject;
     private Date receivedAt;
-    private long sent_id;
+    private long sentid;
 
     public long getSent_id() {
-        return sent_id;
+        return sentid;
     }
 
     public void setSent_id(long sent_id) {
-        this.sent_id = sent_id;
+        this.sentid = sent_id;
     }
 
     @Transient

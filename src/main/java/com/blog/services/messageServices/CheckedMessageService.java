@@ -46,5 +46,12 @@ public class CheckedMessageService {
                 .setParameter("paramReceiver", receiver).setParameter("paramId",id).getSingleResult();
     }
 
+    public List<CheckedMessage> findBySentid(long sentid) {
+        return em.createQuery("SELECT u FROM CheckedMessage u WHERE u.sentid=:paramSentid", CheckedMessage.class)
+                .setParameter("paramSentid", sentid).getResultList();
+    }
+
+
+
 
 }
