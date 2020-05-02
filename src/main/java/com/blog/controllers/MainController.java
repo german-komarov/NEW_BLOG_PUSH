@@ -2,9 +2,8 @@ package com.blog.controllers;
 
 
 import com.blog.entities.Blog1;
-import com.blog.entities.Comment;
 import com.blog.entities.Role;
-import com.blog.entities.User;
+import com.blog.entities.Users;
 import com.blog.services.Blog1Service;
 import com.blog.services.messageServices.NewMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 import java.util.Set;
@@ -39,18 +37,18 @@ public class MainController {
     @GetMapping("/main")
     public String main_page(Model model)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Set<Role> roleSet=user.getRoles();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Set<Role> roleSet= users.getRoles();
         for (Role role:roleSet)
         {
             if (role.getName().equals("ROLE_ADMIN"))
             {
                 model.addAttribute("role","admin");
-                model.addAttribute("counter",newMessageService.newMessagesList(user.getUsername()).size());
+                model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
                 return "main_page";
             }
         }
-        model.addAttribute("counter",newMessageService.newMessagesList(user.getUsername()).size());
+        model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
 
         model.addAttribute("role","not_admin");
 

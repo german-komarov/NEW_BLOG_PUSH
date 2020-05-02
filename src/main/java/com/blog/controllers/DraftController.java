@@ -1,12 +1,10 @@
 package com.blog.controllers;
 
 
-import com.blog.entities.Blog1;
 import com.blog.entities.Draft;
 import com.blog.entities.Post;
-import com.blog.entities.User;
+import com.blog.entities.Users;
 import com.blog.services.DraftService;
-import com.blog.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -29,8 +27,8 @@ public class DraftController {
 
     @GetMapping("/main/blog/draft")
     public String drafts(Model model) {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<Draft> listDraft = draftService.draftgtList(user.getUsername());
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<Draft> listDraft = draftService.draftgtList(users.getUsername());
         model.addAttribute("listDraft",listDraft);
 
         return "draft_page";
@@ -46,8 +44,8 @@ public class DraftController {
 
     @PostMapping(value = "/main/blog/draft/save")
     public String saveProduct(@ModelAttribute("draft") Draft draft) {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        draft.setUsername(user.getUsername());
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        draft.setUsername(users.getUsername());
         draftService.save(draft);
 
         return "redirect:/main/blog/draft";

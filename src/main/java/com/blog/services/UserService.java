@@ -1,7 +1,7 @@
 package com.blog.services;
 
 import com.blog.entities.Role;
-import com.blog.entities.User;
+import com.blog.entities.Users;
 import com.blog.repositories.RoleRepository;
 import com.blog.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,34 +30,34 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        Users users = userRepository.findByUsername(username);
 
-        if (user == null) {
+        if (users == null) {
             throw new UsernameNotFoundException("User not found");
         }
 
-        return user;
+        return users;
     }
 
-    public User findUserById(long userId) {
-        Optional<User> userFromDb = userRepository.findById(userId);
-        return userFromDb.orElse(new User());
+    public Users findUserById(long userId) {
+        Optional<Users> userFromDb = userRepository.findById(userId);
+        return userFromDb.orElse(new Users());
     }
 
-    public List<User> allUsers() {
+    public List<Users> allUsers() {
         return userRepository.findAll();
     }
 
-    public boolean saveUser(User user) {
-        User userFromDB = userRepository.findByUsername(user.getUsername());
+    public boolean saveUser(Users users) {
+        Users usersFromDB = userRepository.findByUsername(users.getUsername());
 
-        if (userFromDB != null) {
+        if (usersFromDB != null) {
             return false;
         }
 
-        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
+        userRepository.save(users);
         return true;
     }
 
@@ -69,12 +69,12 @@ public class UserService implements UserDetailsService {
         return false;
     }
 
-    public List<User> usergtList(long idMin) {
-        return em.createQuery("SELECT u FROM User u WHERE u.id > :paramId", User.class)
+    public List<Users> usergtList(long idMin) {
+        return em.createQuery("SELECT u FROM Users u WHERE u.id > :paramId", Users.class)
                 .setParameter("paramId", idMin).getResultList();
     }
 
-    public User findByUsername(String username)
+    public Users findByUsername(String username)
     {
         return userRepository.findByUsername(username);
     }

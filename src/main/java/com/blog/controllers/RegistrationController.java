@@ -1,6 +1,6 @@
 package com.blog.controllers;
 
-import com.blog.entities.User;
+import com.blog.entities.Users;
 import com.blog.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,22 +20,22 @@ public class RegistrationController {
 
     @GetMapping("/registration")
     public String registration(Model model) {
-        model.addAttribute("userForm", new User());
+        model.addAttribute("userForm", new Users());
 
         return "registration";
     }
 
     @PostMapping("/registration")
-    public String addUser(@ModelAttribute("userForm") @Valid User userForm, BindingResult bindingResult, Model model) {
+    public String addUser(@ModelAttribute("userForm") @Valid Users usersForm, BindingResult bindingResult, Model model) {
 
         if (bindingResult.hasErrors()) {
             return "registration";
         }
-        if (!userForm.getPassword().equals(userForm.getPasswordConfirm())){
+        if (!usersForm.getPassword().equals(usersForm.getPasswordConfirm())){
             model.addAttribute("passwordError", "Passwords don't match");
             return "registration";
         }
-        if (!userService.saveUser(userForm)){
+        if (!userService.saveUser(usersForm)){
             model.addAttribute("usernameError", "User with this username already exists");
             return "registration";
         }

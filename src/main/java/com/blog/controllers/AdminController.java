@@ -3,7 +3,7 @@ package com.blog.controllers;
 
 import com.blog.entities.Blog1;
 import com.blog.entities.Post;
-import com.blog.entities.User;
+import com.blog.entities.Users;
 import com.blog.services.Blog1Service;
 import com.blog.services.PostService;
 import com.blog.services.UserService;
@@ -61,8 +61,8 @@ public class AdminController {
     //Save
     @PostMapping(value = "/main/admin/blog_admin/save")
     public String saveProduct(@ModelAttribute("blog1") Blog1 blog1) {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        blog1.setUsername(user.getUsername());
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        blog1.setUsername(users.getUsername());
         service.save(blog1);
         return "redirect:/main/admin/blog_admin";
     }
@@ -208,16 +208,16 @@ public class AdminController {
     @GetMapping("/main/admin/users")
     public String getAllUsers(Model model)
     {
-        List<User> userList=userService.allUsers();
-        model.addAttribute("userList",userList);
+        List<Users> usersList =userService.allUsers();
+        model.addAttribute("userList", usersList);
         return "user_list";
 
     }
     @GetMapping("/main/admin/users/this_user/{id}")
     public String thisUser(@PathVariable(name="id") int id,Model model)
     {
-        User user=userService.findUserById(id);
-        model.addAttribute("user",user);
+        Users users =userService.findUserById(id);
+        model.addAttribute("user", users);
         return "this_user";
 
 
@@ -229,12 +229,12 @@ public class AdminController {
     @GetMapping("/main/admin/active_users")
     public String listLoggedInUsers(Model model) {
         List<Object> allPrincipals = sessionRegistry.getAllPrincipals();
-        List<User> userList=new ArrayList<>();
+        List<Users> usersList =new ArrayList<>();
         for(Object o:allPrincipals)
         {
-            userList.add((User) o);
+            usersList.add((Users) o);
         }
-        model.addAttribute("userList",userList);
+        model.addAttribute("userList", usersList);
         return "active_users";
 
     }
@@ -243,24 +243,24 @@ public class AdminController {
     @PostMapping("/main/admin/users/filter")
     public String filter(@RequestParam String filter, Model model)
     {
-        List<User> userList=new ArrayList<User>();
+        List<Users> usersList =new ArrayList<Users>();
 
 
         if(filter!=null&&!filter.isEmpty())
         {
             if (userService.findByUsername(filter)==null)
             {
-                model.addAttribute("userList",userList);
+                model.addAttribute("userList", usersList);
                 return "user_list";
             }
-            userList.add(userService.findByUsername(filter));
+            usersList.add(userService.findByUsername(filter));
         }
         else
         {
-            userList=userService.allUsers();
+            usersList =userService.allUsers();
         }
 
-        model.addAttribute("userList", userList);
+        model.addAttribute("userList", usersList);
         return "user_list";
 
     }

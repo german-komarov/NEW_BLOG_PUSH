@@ -2,9 +2,7 @@ package com.blog.services;
 
 import java.util.List;
 
-import com.blog.entities.Blog1;
 import com.blog.entities.Draft;
-import com.blog.entities.User;
 import com.blog.repositories.DraftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

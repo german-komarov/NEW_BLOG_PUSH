@@ -10,18 +10,18 @@
 </div>
 <body>
 <h2>
-    Id : <span th:text="${user.id}" th:remove="tag"></span>
+    Id : <span th:text="${users.id}" th:remove="tag"></span>
 </h2>
 <br>
 <h2>
-    Username : <span th:text="${user.username}" th:remove="tag"></span>
+    Username : <span th:text="${users.username}" th:remove="tag"></span>
 </h2>
 <br>
 <h2>
-    Password : <span th:text="${user.password}" th:remove="tag"></span>
+    Password : <span th:text="${users.password}" th:remove="tag"></span>
 </h2>
 <br>
-<h2 th:each="role : ${user.roles}">
+<h2 th:each="role : ${users.roles}">
     <span th:text="${role.name}">Roles</span>
 </h2>
 

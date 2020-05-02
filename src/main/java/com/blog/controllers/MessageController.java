@@ -1,7 +1,7 @@
 package com.blog.controllers;
 
 
-import com.blog.entities.User;
+import com.blog.entities.Users;
 import com.blog.entities.message.CheckedMessage;
 import com.blog.entities.message.DeletedMessage;
 import com.blog.entities.message.NewMessage;
@@ -41,11 +41,11 @@ public class MessageController {
     public String allMessages(Model model)
     {
         //get current user
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         //new messages
-        List<NewMessage> newMessageList=newMessageService.newMessagesList(user.getUsername());
+        List<NewMessage> newMessageList=newMessageService.newMessagesList(users.getUsername());
         //checked messages
-        List<CheckedMessage> checkedMessageList=checkedMessageService.checkedMessagesList(user.getUsername());
+        List<CheckedMessage> checkedMessageList=checkedMessageService.checkedMessagesList(users.getUsername());
         //adding attributes
         model.addAttribute("newCounter",newMessageList.size());
         model.addAttribute("newList",newMessageList);
@@ -59,12 +59,12 @@ public class MessageController {
     public String readCheckedMessage(Model model, @PathVariable(name="id") long id)
     {
         //get current user
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!checkedMessageService.get(id).getReceiver().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!checkedMessageService.get(id).getReceiver().equals(users.getUsername()))
         {
             return "denied_page";
         }
-        CheckedMessage checkedMessage=checkedMessageService.checkedMessage(user.getUsername(),id);
+        CheckedMessage checkedMessage=checkedMessageService.checkedMessage(users.getUsername(),id);
         model.addAttribute("message",checkedMessage);
         return "read_message";
     }
@@ -74,12 +74,12 @@ public class MessageController {
     public String readDeletedMessage(Model model, @PathVariable(name="id") long id)
     {
         //get current user
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!deletedMessageService.get(id).getDeleter().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!deletedMessageService.get(id).getDeleter().equals(users.getUsername()))
         {
             return "denied_page";
         }
-        DeletedMessage deletedMessage=deletedMessageService.deletedMessage(user.getUsername(),id);
+        DeletedMessage deletedMessage=deletedMessageService.deletedMessage(users.getUsername(),id);
         model.addAttribute("message",deletedMessage);
         model.addAttribute("new","NewMessage");
         model.addAttribute("sent","SentMessage");
@@ -92,12 +92,12 @@ public class MessageController {
     public String readNewMessage(@PathVariable(name="id") long id, Model model)
     {
         //get current user
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!newMessageService.get(id).getReceiver().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!newMessageService.get(id).getReceiver().equals(users.getUsername()))
         {
             return "denied_page";
         }
-        NewMessage newMessage=newMessageService.newMessage(user.getUsername(),id);
+        NewMessage newMessage=newMessageService.newMessage(users.getUsername(),id);
 
         CheckedMessage checkedMessage=new CheckedMessage();
         checkedMessage.setSubject(newMessage.getSubject());
@@ -116,9 +116,9 @@ public class MessageController {
     @GetMapping("/main/message/writeMessage")
     public String getWrite(Model model)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SentMessage sentMessage=new SentMessage();
-        sentMessage.setSender(user.getUsername());
+        sentMessage.setSender(users.getUsername());
         sentMessage.setSubject("No subject");
         model.addAttribute("sentMessage",sentMessage);
         return "write_message";
@@ -145,8 +145,8 @@ public class MessageController {
     @GetMapping("/main/message/sentMessage")
     public String allSentMessages(Model model)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<SentMessage> sentMessageList=sentMessageService.sentMessagesList(user.getUsername());
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<SentMessage> sentMessageList=sentMessageService.sentMessagesList(users.getUsername());
         model.addAttribute("sentList",sentMessageList);
         return "sent_messages_list";
 
@@ -155,12 +155,12 @@ public class MessageController {
     @GetMapping("/main/message/deleteMessage")
     public String allDeletedMessages(Model model)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<DeletedMessage> deletedNewMessagesList=deletedMessageService.deletedNewMessagesList(user.getUsername());
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        List<DeletedMessage> deletedNewMessagesList=deletedMessageService.deletedNewMessagesList(users.getUsername());
         model.addAttribute("deletedNewMessagesList",deletedNewMessagesList);
-        List<DeletedMessage> deletedCheckedMessagesList=deletedMessageService.deletedCheckedMessagesList(user.getUsername());
+        List<DeletedMessage> deletedCheckedMessagesList=deletedMessageService.deletedCheckedMessagesList(users.getUsername());
         model.addAttribute("deletedCheckedMessagesList",deletedCheckedMessagesList);
-        List<DeletedMessage> deletedSentMessagesList=deletedMessageService.deletedSentMessagesList(user.getUsername());
+        List<DeletedMessage> deletedSentMessagesList=deletedMessageService.deletedSentMessagesList(users.getUsername());
         model.addAttribute("deletedSentMessagesList",deletedSentMessagesList);
         return "deleted_messages_list";
 
@@ -169,8 +169,8 @@ public class MessageController {
     @GetMapping("/main/message/delete/deleteAtAll/{id}")
     public String deleteAtAll(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!deletedMessageService.get(id).getDeleter().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!deletedMessageService.get(id).getDeleter().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -184,12 +184,12 @@ public class MessageController {
     public String readSentMessages(Model model,@PathVariable(name="id") long id)
     {
         //get current user
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!sentMessageService.get(id).getSender().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if (!sentMessageService.get(id).getSender().equals(users.getUsername()))
         {
             return "denied_page";
         }
-        SentMessage sentMessage=sentMessageService.sentMessage(user.getUsername(),id);
+        SentMessage sentMessage=sentMessageService.sentMessage(users.getUsername(),id);
         model.addAttribute("message",sentMessage);
         return "read_sent_message";
     }
@@ -197,9 +197,9 @@ public class MessageController {
     @GetMapping("/main/message/answer/{sender}")
     public String getAnswer(Model model,@PathVariable(name="sender") String sender)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SentMessage sentMessage=new SentMessage();
-        sentMessage.setSender(user.getUsername());
+        sentMessage.setSender(users.getUsername());
         sentMessage.setReceiver(sender);
         sentMessage.setSubject("No subject");
         model.addAttribute("sentMessage",sentMessage);
@@ -211,9 +211,9 @@ public class MessageController {
     @GetMapping("/main/message/delete/NewMessage/{id}")
     public String deleteNew(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         NewMessage newMessage=newMessageService.get(id);
-        if(!newMessage.getReceiver().equals(user.getUsername()))
+        if(!newMessage.getReceiver().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -224,7 +224,7 @@ public class MessageController {
         deletedMessage.setReceiver(newMessage.getReceiver());
         deletedMessage.setSender(newMessage.getSender());
         deletedMessage.setSubject(newMessage.getSubject());
-        deletedMessage.setDeleter(user.getUsername());
+        deletedMessage.setDeleter(users.getUsername());
         deletedMessage.setSent_id(newMessage.getSent_id());
         deletedMessageService.save(deletedMessage);
         newMessageService.delete(id);
@@ -235,9 +235,9 @@ public class MessageController {
     @GetMapping("/main/message/delete/CheckedMessage/{id}")
     public String deleteChecked(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         CheckedMessage checkedMessage=checkedMessageService.get(id);
-        if(!checkedMessage.getReceiver().equals(user.getUsername()))
+        if(!checkedMessage.getReceiver().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -248,7 +248,7 @@ public class MessageController {
         deletedMessage.setReceiver(checkedMessage.getReceiver());
         deletedMessage.setSender(checkedMessage.getSender());
         deletedMessage.setSubject(checkedMessage.getSubject());
-        deletedMessage.setDeleter(user.getUsername());
+        deletedMessage.setDeleter(users.getUsername());
         deletedMessage.setSent_id(checkedMessage.getSent_id());
         deletedMessageService.save(deletedMessage);
         checkedMessageService.delete(id);
@@ -259,9 +259,9 @@ public class MessageController {
     @GetMapping("/main/message/delete/SentMessage/{id}")
     public String deleteSent(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         SentMessage sentMessage=sentMessageService.get(id);
-        if(!sentMessage.getSender().equals(user.getUsername()))
+        if(!sentMessage.getSender().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -272,7 +272,7 @@ public class MessageController {
         deletedMessage.setReceiver(sentMessage.getReceiver());
         deletedMessage.setSender(sentMessage.getSender());
         deletedMessage.setSubject(sentMessage.getSubject());
-        deletedMessage.setDeleter(user.getUsername());
+        deletedMessage.setDeleter(users.getUsername());
         deletedMessage.setSent_id(sentMessage.getId());
         deletedMessageService.save(deletedMessage);
         sentMessageService.delete(id);
@@ -285,8 +285,8 @@ public class MessageController {
     @GetMapping("/main/message/delete/AreYouSureDelete/{id}")
     public String areYouSureDelete(@PathVariable(name="id") long id,Model model)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!deletedMessageService.get(id).getDeleter().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!deletedMessageService.get(id).getDeleter().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -300,9 +300,9 @@ public class MessageController {
     @GetMapping("/main/message/restoreSentMessage/{id}")
     public String restoreSentMessage(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         DeletedMessage deletedMessage=deletedMessageService.get(id);
-        if(!deletedMessage.getDeleter().equals(user.getUsername()))
+        if(!deletedMessage.getDeleter().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -325,9 +325,9 @@ public class MessageController {
     @GetMapping("/main/message/restoreNewMessage/{id}")
     public String restoreNewMessage(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         DeletedMessage deletedMessage=deletedMessageService.get(id);
-        if(!deletedMessage.getDeleter().equals(user.getUsername()))
+        if(!deletedMessage.getDeleter().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -349,9 +349,9 @@ public class MessageController {
     @GetMapping("/main/message/restoreCheckedMessage/{id}")
     public String restoreCheckedMessage(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         DeletedMessage deletedMessage=deletedMessageService.get(id);
-        if(!deletedMessage.getDeleter().equals(user.getUsername()))
+        if(!deletedMessage.getDeleter().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -377,8 +377,8 @@ public class MessageController {
     @GetMapping("/main/message/delete/AreYouSureDeleteFromBoth/{id}")
     public String areYouSureDeleteFromBoth(@PathVariable(name="id") long id,Model model)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!sentMessageService.get(id).getSender().equals(user.getUsername()))
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(!sentMessageService.get(id).getSender().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -389,10 +389,10 @@ public class MessageController {
     @GetMapping("/main/message/delete/deleteAtAllFromBoth/{id}")
     public String deleteAtAllFromBoth(@PathVariable(name="id") long id)
     {
-        User user= (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (!newMessageService.findBySentid(id).isEmpty())
         {
-            if(!newMessageService.findBySentid(id).get(0).getSender().equals(user.getUsername()))
+            if(!newMessageService.findBySentid(id).get(0).getSender().equals(users.getUsername()))
             {
                 return "denied_page";
             }
@@ -404,7 +404,7 @@ public class MessageController {
 
         if(!checkedMessageService.findBySentid(id).isEmpty())
         {
-            if(!checkedMessageService.findBySentid(id).get(0).getSender().equals(user.getUsername()))
+            if(!checkedMessageService.findBySentid(id).get(0).getSender().equals(users.getUsername()))
             {
                 return "denied_page";
             }
@@ -415,7 +415,7 @@ public class MessageController {
 
         if (!deletedMessageService.findBySentid(id).isEmpty())
         {
-            if(!deletedMessageService.findBySentid(id).get(0).getSender().equals(user.getUsername()))
+            if(!deletedMessageService.findBySentid(id).get(0).getSender().equals(users.getUsername()))
             {
                 return "denied_page";
             }
@@ -424,7 +424,7 @@ public class MessageController {
             return "successfully_deleted_from_both";
         }
 
-        if(sentMessageService.get(id).getSender().equals(user.getUsername()))
+        if(sentMessageService.get(id).getSender().equals(users.getUsername()))
         {
             sentMessageService.delete(id);
             return "already_deleted";

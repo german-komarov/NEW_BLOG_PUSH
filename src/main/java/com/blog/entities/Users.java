@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Set;
 
 @Entity
-public class User implements UserDetails {
+public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,7 +22,7 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    public User() {
+    public Users() {
     }
 
     public Long getId() {
