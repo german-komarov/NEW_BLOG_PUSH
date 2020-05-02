@@ -2,20 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eccbdc4c-249a-4584-b01e-706db0b976f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/already_deleted.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/are_you_sure_delete_from_both.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/successfully_deleted_from_both.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/MessageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/MessageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/CheckedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/CheckedMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/DeletedMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/DeletedMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/NewMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/message/NewMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/NewMessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/messageRepositories/NewMessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/CheckedMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/CheckedMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/DeletedMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/DeletedMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/NewMessageService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/messageServices/NewMessageService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/are_you_sure_delete.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/are_you_sure_delete.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/sent_messages_list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/sent_messages_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,6 +175,10 @@
       <workItem from="1585918784234" duration="7230000" />
       <workItem from="1585991982606" duration="2763000" />
       <workItem from="1585998557793" duration="398000" />
+      <workItem from="1586630352441" duration="67000" />
+      <workItem from="1586946210358" duration="152000" />
+      <workItem from="1587226786842" duration="85000" />
+      <workItem from="1588444621591" duration="2012000" />
     </task>
     <servers />
   </component>
@@ -241,46 +233,46 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="374" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1584207694611" />
-    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1584527724664">
+    <state x="549" y="168" key="FileChooserDialogImpl" timestamp="1587226871384">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1584527724664" />
+    <state x="549" y="168" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1587226871384" />
     <state x="651" y="307" width="258" height="210" key="Github.ShareDialog" timestamp="1584527771238">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="651" y="307" width="258" height="210" key="Github.ShareDialog/0.0.1536.824@0.0.1536.824" timestamp="1584527771238" />
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.0.bottom" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.0.center" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.0.center" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.0.left" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.0.left" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.0.right" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.0.right" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.1.bottom" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.1.bottom" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.1.center" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.1.center" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.1.left" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.1.left" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
-    <state width="1493" height="2" key="GridCell.Tab.1.right" timestamp="1585998960744">
+    <state width="1493" height="568" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
+    <state width="1493" height="568" key="GridCell.Tab.1.right" timestamp="1586946363601">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state width="1493" height="2" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1585998960744" />
+    <state width="1493" height="568" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1586946363601" />
     <state width="189" height="457" key="HiddenNamespacesPopup" timestamp="1584097022191">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -293,10 +285,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="512" y="135" key="RollbackChangesDialog/0.0.1536.824@0.0.1536.824" timestamp="1584207482912" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1585998558097">
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2" timestamp="1588446400328">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1585998558097" />
+    <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588446400328" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1587226816183">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1587226816183" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584207460522">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
