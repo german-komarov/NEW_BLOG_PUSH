@@ -209,7 +209,7 @@ public class AdminController {
     public String getAllUsers(Model model)
     {
         List<Users> usersList =userService.allUsers();
-        model.addAttribute("userLists", usersList);
+        model.addAttribute("usersList", usersList);
         return "user_list";
 
     }
