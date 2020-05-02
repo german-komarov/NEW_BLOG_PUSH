@@ -209,7 +209,7 @@ public class AdminController {
     public String getAllUsers(Model model)
     {
         List<Users> usersList =userService.allUsers();
-        model.addAttribute("userList", usersList);
+        model.addAttribute("userLists", usersList);
         return "user_list";
 
     }
@@ -217,7 +217,7 @@ public class AdminController {
     public String thisUser(@PathVariable(name="id") int id,Model model)
     {
         Users users =userService.findUserById(id);
-        model.addAttribute("user", users);
+        model.addAttribute("users", users);
         return "this_user";
 
 
@@ -234,7 +234,7 @@ public class AdminController {
         {
             usersList.add((Users) o);
         }
-        model.addAttribute("userList", usersList);
+        model.addAttribute("usersList", usersList);
         return "active_users";
 
     }
@@ -250,7 +250,7 @@ public class AdminController {
         {
             if (userService.findByUsername(filter)==null)
             {
-                model.addAttribute("userList", usersList);
+                model.addAttribute("usersList", usersList);
                 return "user_list";
             }
             usersList.add(userService.findByUsername(filter));
@@ -260,7 +260,7 @@ public class AdminController {
             usersList =userService.allUsers();
         }
 
-        model.addAttribute("userList", usersList);
+        model.addAttribute("usersList", usersList);
         return "user_list";
 
     }
