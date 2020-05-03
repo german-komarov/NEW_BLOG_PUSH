@@ -59,7 +59,7 @@ public class RegistrationController {
         usersForm.setPassword(bCryptPasswordEncoder.encode(usersForm.getPassword()));
         usersForm.setActivationCode(UUID.randomUUID().toString());
         String message= String.format("Hello %s.\n\nWelcome to StudentZ. " +
-                "Go to this reference to activate your account https://localhost:8080/registration/activate/%s",
+                "Go to this reference to activate your account https://studentz.herokuapp.com/registration/activate/%s",
                 usersForm.getUsername(),usersForm.getActivationCode());
         mailSender.send(usersForm.getEmail(),"Account Activation",message);
 
@@ -68,7 +68,7 @@ public class RegistrationController {
         return "confirming_page";
     }
 
-    @GetMapping("https://studentz.herokuapp.com/registration/{activationCode}")
+    @GetMapping("/registration/{activationCode}")
     public String activationAccount(@PathVariable("activationCode") String activationCode)
     {
         TermUser termUser=termUserService.findByActivationCode(activationCode);
