@@ -73,22 +73,17 @@ public class RegistrationController {
     public String activationAccount(@PathVariable("activationCode") String activationCode)
     {
         TermUser termUser=termUserService.findByActivationCode(activationCode);
-        if(termUser!=null)
-        {
             Users users=new Users();
             users.setUsername(termUser.getUsername());
             users.setEmail(termUser.getEmail());
             users.setPassword(termUser.getPassword());
-            userService.saveUser(users);
-            termUserService.delete(termUser.getId());
-            return "success_registration";
-        }
-        else
-        {
-            return "denied_page";
-        }
-
-
+            if(userService.saveUser(users)) {
+                return "success_registration";
+            }
+            else
+            {
+                return "denied_page";
+            }
 
     }
 }
