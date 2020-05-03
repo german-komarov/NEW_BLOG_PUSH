@@ -78,7 +78,7 @@ public class RegistrationController {
             Users users=new Users();
             users.setUsername(termUser.getUsername());
             users.setEmail(termUser.getEmail());
-            users.setPassword(bCryptPasswordEncoder.encode(termUser.getPassword()));
+            users.setPassword(termUser.getPassword());
             userService.saveUser(users);
             termUserService.delete(termUser.getId());
             return "success_registration";
