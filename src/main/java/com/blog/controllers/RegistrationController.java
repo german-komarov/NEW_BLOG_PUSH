@@ -68,7 +68,7 @@ public class RegistrationController {
         return "confirming_page";
     }
 
-    @GetMapping("/registration/{activationCode}")
+    @GetMapping("https://studentz.herokuapp.com/registration/{activationCode}")
     public String activationAccount(@PathVariable("activationCode") String activationCode)
     {
         TermUser termUser=termUserService.findByActivationCode(activationCode);
