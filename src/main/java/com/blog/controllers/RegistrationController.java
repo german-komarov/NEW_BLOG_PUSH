@@ -73,13 +73,27 @@ public class RegistrationController {
     public String activationAccount(@PathVariable("activationCode") String activationCode)
     {
         TermUser termUser=termUserService.findByActivationCode(activationCode);
-            Users users=new Users();
+
+        if(termUser!=null) {
+            if(termUser.getEmail().endsWith("ufaz.az"))
+            {
+                Users users = new Users();
+                users.setUsername(termUser.getUsername());
+                users.setEmail(termUser.getEmail());
+                users.setPassword(termUser.getPassword());
+
+
+                return "success_registration";
+            }
+            Users users = new Users();
             users.setUsername(termUser.getUsername());
             users.setEmail(termUser.getEmail());
             users.setPassword(termUser.getPassword());
-            if(userService.saveUser(users)) {
+            termUserService.delete(termUser.getId());
+
                 return "success_registration";
-            }
+
+        }
             else
             {
                 return "denied_page";

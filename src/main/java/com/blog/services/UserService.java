@@ -49,10 +49,7 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean saveUser(Users users) {
-        if(userRepository.findByUsername(users.getUsername())!=null)
-        {
-            return false;
-        }
+        
         users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         userRepository.save(users);
         return true;
