@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="eccbdc4c-249a-4584-b01e-706db0b976f8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/AdminController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/config/MailConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/TermUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/repositories/TermUserRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/MailSender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/TermUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/confirming_page.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/success_registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/config/WebSecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/config/WebSecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/entities/Users.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/entities/Users.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/registration.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/config/WebSecurityConfig.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/config/WebSecurityConfig.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/Blog1Controller.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/Blog1Controller.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/DraftController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/DraftController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/controllers/PostController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/controllers/PostController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/blog/services/DraftService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/blog/services/DraftService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,7 +197,9 @@
       <workItem from="1586630352441" duration="67000" />
       <workItem from="1586946210358" duration="152000" />
       <workItem from="1587226786842" duration="85000" />
-      <workItem from="1588444621591" duration="5149000" />
+      <workItem from="1588444621591" duration="5777000" />
+      <workItem from="1588501206858" duration="6291000" />
+      <workItem from="1588521868707" duration="6045000" />
     </task>
     <servers />
   </component>
@@ -216,14 +238,14 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="527" y="216" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.824@0.0.1536.824" timestamp="1583737205190" />
-    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1585911902795">
+    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser" timestamp="1588525088506">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1585911902795" />
-    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1585588496324">
+    <state x="574" y="97" key="#com.intellij.ide.util.MemberChooser/0.0.1536.824@0.0.1536.824" timestamp="1588525088506" />
+    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1588524432109">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1585588496324" />
+    <state x="566" y="273" width="403" height="287" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1536.824@0.0.1536.824" timestamp="1588524432109" />
     <state x="385" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1588447676136">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -292,10 +314,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="361" y="146" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588447102570" />
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1587226816183">
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog" timestamp="1588522035158">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1587226816183" />
+    <state x="465" y="238" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1588522035158" />
     <state x="578" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1584207460522">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

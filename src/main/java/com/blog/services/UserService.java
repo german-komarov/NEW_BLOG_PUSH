@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -25,8 +26,7 @@ public class UserService implements UserDetailsService {
     UserRepository userRepository;
     @Autowired
     RoleRepository roleRepository;
-    @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -49,14 +49,8 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean saveUser(Users users) {
-        Users usersFromDB = userRepository.findByUsername(users.getUsername());
-
-        if (usersFromDB != null) {
-            return false;
-        }
 
         users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-        users.setPassword(bCryptPasswordEncoder.encode(users.getPassword()));
         userRepository.save(users);
         return true;
     }

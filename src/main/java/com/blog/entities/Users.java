@@ -4,6 +4,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Set;
@@ -13,14 +15,26 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(min=2, message = "Не меньше 5 знаков")
+    @NotBlank (message = "This field cannot be empty")
+    @Size(min=5, max=30,message = "Between 5 and 30")
     private String username;
-    @Size(min=2, message = "Не меньше 5 знаков")
+    @NotBlank (message = "This field cannot be empty")
+    @Size(min=5, message = "Not less than 5")
     private String password;
+
+
+
     @Transient
+    @NotBlank (message = "This field cannot be empty")
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
+
+    @NotBlank (message = "This field cannot be empty")
+    @Email
+    private String email;
+
+
 
     public Users() {
     }
@@ -91,4 +105,14 @@ public class Users implements UserDetails {
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
 }
