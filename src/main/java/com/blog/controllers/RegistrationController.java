@@ -58,6 +58,7 @@ public class RegistrationController {
         }
         usersForm.setPassword(bCryptPasswordEncoder.encode(usersForm.getPassword()));
         usersForm.setActivationCode(UUID.randomUUID().toString());
+        termUserService.save(usersForm);
         String message= String.format("Hello %s.\n\nWelcome to StudentZ. " +
                 "Go to this reference to activate your account https://studentz.herokuapp.com/registration/activate/%s",
                 usersForm.getUsername(),usersForm.getActivationCode());
