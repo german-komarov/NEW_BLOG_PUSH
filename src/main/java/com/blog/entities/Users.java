@@ -15,23 +15,13 @@ public class Users implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank (message = "This field cannot be empty")
-    @Size(min=5, max=30,message = "Between 5 and 30")
     private String username;
-    @NotBlank (message = "This field cannot be empty")
-    @Size(min=5, message = "Not less than 5")
     private String password;
 
-
-
-    @Transient
-    @NotBlank (message = "This field cannot be empty")
     private String passwordConfirm;
     @ManyToMany(fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @NotBlank (message = "This field cannot be empty")
-    @Email
     private String email;
 
 
