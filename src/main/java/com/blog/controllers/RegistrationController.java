@@ -81,6 +81,7 @@ public class RegistrationController {
                 users.setUsername(termUser.getUsername());
                 users.setEmail(termUser.getEmail());
                 users.setPassword(termUser.getPassword());
+                userService.saveUser(users);
 
 
                 return "success_registration";
@@ -89,6 +90,7 @@ public class RegistrationController {
             users.setUsername(termUser.getUsername());
             users.setEmail(termUser.getEmail());
             users.setPassword(termUser.getPassword());
+            userService.saveUser(users);
             termUserService.delete(termUser.getId());
 
                 return "success_registration";
