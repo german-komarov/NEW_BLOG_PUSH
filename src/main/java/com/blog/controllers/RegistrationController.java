@@ -30,8 +30,7 @@ public class RegistrationController {
     @Autowired
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    private int counter;
-    {counter=0;}
+
 
     @GetMapping("/registration")
     public String registration(Model model) {
@@ -79,10 +78,23 @@ public class RegistrationController {
 
         if(termUser!=null) {
 
-            if(termUser.getEmail().endsWith("@ufaz.az") && counter==0)
+            if(termUser.getEmail().endsWith("@ufaz.az") && termUser.getCounter()==0)
             {
 
-                counter++;
+                termUser.setCounter(1);
+                termUserService.save(termUser);
+
+                return "success_registration";
+            }
+            else if(termUser.getEmail().endsWith("@ufaz.az") && termUser.getCounter()==1)
+            {
+                Users users = new Users();
+                users.setUsername(termUser.getUsername());
+                users.setEmail(termUser.getEmail());
+                users.setPassword(termUser.getPassword());
+                userService.saveUser(users);
+                termUserService.delete(termUser.getId());
+
 
                 return "success_registration";
             }
@@ -92,7 +104,7 @@ public class RegistrationController {
             users.setPassword(termUser.getPassword());
             userService.saveUser(users);
             termUserService.delete(termUser.getId());
-            counter=0;
+
 
                 return "success_registration";
 

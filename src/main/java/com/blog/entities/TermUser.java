@@ -30,6 +30,8 @@ public class TermUser {
     private String email;
     private String activationCode;
 
+    private int counter;
+
 
     public TermUser() {
     }
@@ -80,5 +82,13 @@ public class TermUser {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }
