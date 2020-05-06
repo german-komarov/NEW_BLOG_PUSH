@@ -37,7 +37,7 @@
     <pre th:text="${comment.content}"/>
     <h6 th:text="${comment.createdAt}"/>
 
-    <a th:href="@{'/main/blog/text/' + ${blogid}+'/comments/delete/'+${comment.id}}" th:if="${comment.author}==${users}">delete</a>
+    <a th:href="@{'/main/blog/text/' + ${blogid}+'/comments/delete/'+${comment.id}}" th:if="${comment.author}==${user}">delete</a>
 
     <br>
 
