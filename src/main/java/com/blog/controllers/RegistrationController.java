@@ -2,10 +2,9 @@ package com.blog.controllers;
 
 import com.blog.entities.TermUser;
 import com.blog.entities.Users;
-import com.blog.services.MailSender;
+import com.blog.services.RegistrationMailSender;
 import com.blog.services.TermUserService;
 import com.blog.services.UserService;
-import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -22,7 +21,7 @@ import java.util.UUID;
 @Controller
 public class RegistrationController {
     @Autowired
-    private MailSender mailSender;
+    private RegistrationMailSender mailSender;
     @Autowired
     private UserService userService;
     @Autowired
