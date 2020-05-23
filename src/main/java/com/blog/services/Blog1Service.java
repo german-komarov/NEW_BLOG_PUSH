@@ -43,7 +43,7 @@ public class Blog1Service {
     public List<Blog1> findByCategoryModified(String category)
     {
 
-        return  entityManager.createQuery("select blog from Blog1 blog where blog.category like LOWER(:paramCategory)",Blog1.class)
+        return  entityManager.createQuery("select blog from Blog1 blog where lower(blog.category) like :paramCategory",Blog1.class)
                 .setParameter("paramCategory",'%'+category.toLowerCase()+'%').getResultList();
     }
 
