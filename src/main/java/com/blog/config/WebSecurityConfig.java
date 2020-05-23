@@ -33,10 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
-                    .antMatchers("/main/**").hasAnyRole("USER","ADMIN")
-                    .antMatchers("/main/admin/**").hasRole("ADMIN")
-                    .antMatchers("/main/blog/**").hasAnyRole("USER","ADMIN")
-                    .antMatchers("/main/message/**").hasAnyRole("USER","ADMIN")
+                    .antMatchers("/main").hasAnyRole("USER","ADMIN","MODERATOR")
+                    .antMatchers("/main/admin/**").hasAnyRole("ADMIN","MODERATOR")
+                    .antMatchers("/main/admin_special/**").hasRole("ADMIN")
+                    .antMatchers("/main/blog/**").hasAnyRole("USER","ADMIN","MODERATOR")
+                    .antMatchers("/main/message/**").hasAnyRole("USER","ADMIN","MODERATOR")
                     .antMatchers("/").permitAll()
                     .antMatchers("/registration/**","login").permitAll()
                     .and()

@@ -100,7 +100,7 @@ public class Blog1Controller {
 
         if(filter!=null&&!filter.isEmpty())
         {
-           listBlog1=service.findByCategory(filter);
+           listBlog1=service.findByCategoryModified(filter);
         }
         else
         {

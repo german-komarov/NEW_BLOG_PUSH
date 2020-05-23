@@ -41,7 +41,14 @@ public class MainController {
         Set<Role> roleSet= users.getRoles();
         for (Role role:roleSet)
         {
-            if (role.getName().equals("ROLE_ADMIN"))
+            if (role.getName().equals("ROLE_MODERATOR"))
+            {
+                model.addAttribute("role","moderator");
+                model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
+                return "main_page";
+            }
+
+            else if(role.getName().equals("ROLE_ADMIN"))
             {
                 model.addAttribute("role","admin");
                 model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
@@ -75,7 +82,7 @@ public class MainController {
 
         if(filter!=null&&!filter.isEmpty())
         {
-            listBlog1=blog1Service.findByCategory(filter);
+            listBlog1=blog1Service.findByCategoryModified(filter);
         }
         else
         {

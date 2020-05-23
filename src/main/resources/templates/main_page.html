@@ -21,7 +21,7 @@
 <div align="center>">
     <a href="/main/blog">Blog</a>
     <br>
-    <a th:if="${role}==admin" href="/main/admin">Admin</a>
+    <a th:if="${role}==admin or ${role}==moderator" href="/main/admin">Admin</a>
     <br>
     <a th:href="@{/main/message}"><span>Messages(<span th:text="${counter}"/>)</span></a>
 </div>

@@ -8,9 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+
 @Service
 @Transactional
 public class Blog1Service {
+    @Autowired
+    private EntityManager entityManager;
 
     @Autowired
     private Blog1Repository repo;
@@ -35,4 +39,12 @@ public class Blog1Service {
     {
         return repo.findByCategory(category);
     }
+
+    public List<Blog1> findByCategoryModified(String category)
+    {
+        return  entityManager.createQuery("select blog from Blog1 blog where blog.category like :paramCategory",Blog1.class)
+                .setParameter("paramCategory",'%'+category+'%').getResultList();
+    }
+
+
 }

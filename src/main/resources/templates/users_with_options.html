@@ -37,7 +37,8 @@
                     <span th:text="${role.name}">Roles</span>
                 </span>
             </td>
-
+            <td><a th:href="@{'/main/admin_special/users/make_moderator/'+${users.id}}">Make Moderator</a></td>
+            <td><a th:href="@{'/main/admin_special/users/delete_moderator/'+${users.id}}">Delete Moderator</a></td>
         </tr>
         </tbody>
     </table>

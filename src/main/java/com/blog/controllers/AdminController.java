@@ -3,6 +3,7 @@ package com.blog.controllers;
 
 import com.blog.entities.Blog1;
 import com.blog.entities.Post;
+import com.blog.entities.Role;
 import com.blog.entities.Users;
 import com.blog.services.Blog1Service;
 import com.blog.services.PostService;
@@ -15,10 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class AdminController {
@@ -146,8 +144,18 @@ public class AdminController {
 
     //ADMIN PAGE
     @GetMapping("/main/admin")
-    public String admin()
+    public String admin(Model model)
     {
+        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Set<Role> roleSet= users.getRoles();
+        for (Role role:roleSet)
+        {
+            if (role.getName().equals("ROLE_ADMIN"))
+            {
+                model.addAttribute("role","admin");
+                break;
+            }
+        }
         return "admin";
     }
 
@@ -175,7 +183,7 @@ public class AdminController {
 
         if(filter!=null&&!filter.isEmpty())
         {
-            listBlog1=service.findByCategory(filter);
+            listBlog1=service.findByCategoryModified(filter);
         }
         else
         {
@@ -217,11 +225,36 @@ public class AdminController {
     public String thisUser(@PathVariable(name="id") int id,Model model)
     {
         Users users =userService.findUserById(id);
+
         model.addAttribute("users", users);
+
         return "this_user";
 
 
     }
+
+    @GetMapping("/main/admin_special/users/make_moderator/{id}")
+    public String makeFromUserAdmin(@PathVariable("id") long id)
+    {
+        userService.makeModerator(id);
+        return "redirect:/main/admin_special/users";
+    }
+
+    @GetMapping("/main/admin_special/users/delete_moderator/{id}")
+    public String deleteAdmin(@PathVariable("id") long id)
+    {
+        userService.deleteModerator(id);
+        return "redirect:/main/admin_special/users";
+    }
+
+    @GetMapping("/main/admin_special/users")
+    public String adminWithOptions(Model model)
+    {
+        List<Users> usersList=userService.allUsers();
+        model.addAttribute("usersList",usersList);
+        return "users_with_options";
+    }
+
 
     @Autowired
     private SessionRegistry sessionRegistry;

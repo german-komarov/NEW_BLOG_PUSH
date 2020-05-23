@@ -13,10 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -66,6 +63,25 @@ public class UserService implements UserDetailsService {
     public List<Users> usergtList(long idMin) {
         return em.createQuery("SELECT u FROM Users u WHERE u.id > :paramId", Users.class)
                 .setParameter("paramId", idMin).getResultList();
+    }
+
+    public void makeModerator(long id)
+    {
+        Users users=findUserById(id);
+        Set<Role> roles= users.getRoles();
+        roles.add(new Role(2L,"ROLE_MODERATOR"));
+        users.setRoles(roles);
+        userRepository.save(users);
+    }
+
+    public void deleteModerator(long id)
+    {
+        Users users=findUserById(id);
+        Set<Role> roles=users.getRoles();
+        roles.removeIf(role -> role.getName().equals("ROLE_MODERATOR"));
+        users.setRoles(roles);
+        userRepository.save(users);
+
     }
 
     public Users findByUsername(String username)
