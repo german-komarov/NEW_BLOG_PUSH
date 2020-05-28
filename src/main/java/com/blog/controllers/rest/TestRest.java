@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/blog")
+@RequestMapping("/api/blog")
 public class TestRest {
     @Autowired
     private Blog1Service service;
 
 
     @GetMapping("{topic}")
-    public List<Blog1> allBlogs(@PathVariable("topic") String topic )
+    public String allBlogs(@PathVariable("topic") String topic )
     {
-        return service.findByCategory(topic);
+        return topic;
     }
 
 

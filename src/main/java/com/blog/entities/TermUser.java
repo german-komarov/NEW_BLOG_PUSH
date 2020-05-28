@@ -22,7 +22,6 @@ public class TermUser {
 
 
     @Transient
-    @NotBlank (message = "This field cannot be empty")
     private String passwordConfirm;
 
     @NotBlank (message = "This field cannot be empty")
