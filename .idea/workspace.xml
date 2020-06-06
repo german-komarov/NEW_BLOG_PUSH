@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="eccbdc4c-249a-4584-b01e-706db0b976f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/empty_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/password_was_restored_successfully.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/restore_password_page.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/restoring_message_was_sent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/restoring_password_form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/RegistrationController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/controllers/rest/TestRest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/controllers/rest/TestRest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/TermUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/TermUserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/blog/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/blog/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/registration.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/registration.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/templates/login.html" afterDir="false" />
-    </list>
+    <list default="true" id="eccbdc4c-249a-4584-b01e-706db0b976f8" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -240,7 +225,7 @@
       <workItem from="1591374506999" duration="4146000" />
       <workItem from="1591388223271" duration="59000" />
       <workItem from="1591432091206" duration="1524000" />
-      <workItem from="1591442177673" duration="1468000" />
+      <workItem from="1591442177673" duration="1916000" />
     </task>
     <servers />
   </component>

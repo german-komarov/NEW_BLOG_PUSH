@@ -211,9 +211,9 @@ public class RegistrationController {
         {
             if(password.equals(passwordConfirm))
             {
-                Users users=userService.findUserById(termUser.getId());
-                users.setPassword(bCryptPasswordEncoder.encode(password));
-                userService.saveUser(users);
+                List<Users> users=userService.findWithEmail(termUser.getEmail());
+                users.get(0).setPassword(bCryptPasswordEncoder.encode(password));
+                userService.saveUser(users.get(0));
                 return "password_was_restored_successfully";
             }
             else
