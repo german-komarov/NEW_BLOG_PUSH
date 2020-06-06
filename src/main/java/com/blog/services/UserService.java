@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
@@ -18,7 +17,7 @@ import java.util.*;
 @Service
 public class UserService implements UserDetailsService {
     @PersistenceContext
-    private EntityManager em;
+    private EntityManager entityManager;
     @Autowired
     UserRepository userRepository;
     @Autowired
@@ -47,7 +46,6 @@ public class UserService implements UserDetailsService {
 
     public boolean saveUser(Users users) {
 
-        users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
         userRepository.save(users);
         return true;
     }
@@ -61,7 +59,7 @@ public class UserService implements UserDetailsService {
     }
 
     public List<Users> usergtList(long idMin) {
-        return em.createQuery("SELECT u FROM Users u WHERE u.id > :paramId", Users.class)
+        return entityManager.createQuery("SELECT u FROM Users u WHERE u.id > :paramId", Users.class)
                 .setParameter("paramId", idMin).getResultList();
     }
 
@@ -87,5 +85,11 @@ public class UserService implements UserDetailsService {
     public Users findByUsername(String username)
     {
         return userRepository.findByUsername(username);
+    }
+
+    public List<Users> findWithEmail(String email)
+    {
+        return entityManager.createQuery("select u from Users u where u.email like :paramEmail",Users.class)
+                .setParameter("paramEmail",email).getResultList();
     }
 }

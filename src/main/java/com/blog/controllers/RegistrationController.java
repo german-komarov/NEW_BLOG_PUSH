@@ -1,5 +1,6 @@
 package com.blog.controllers;
 
+import com.blog.entities.Role;
 import com.blog.entities.TermUser;
 import com.blog.entities.Users;
 import com.blog.services.RegistrationMailSender;
@@ -10,12 +11,11 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -45,16 +45,21 @@ public class RegistrationController {
             return "registration";
         }
         if (userService.findByUsername(usersForm.getUsername())!=null){
-            model.addAttribute("usernameError", "User with this username already exists");
+            model.addAttribute("error", "User with this username already exists");
+            return "registration";
+        }
+        if(!userService.findWithEmail(usersForm.getEmail()).isEmpty())
+        {
+            model.addAttribute("error", "User with this email already exists");
             return "registration";
         }
         if(termUserService.findByUsername(usersForm.getUsername())!=null)
         {
-            model.addAttribute("usernameError2","this username is waiting for confirming, if after 24 hours it won't be available then it is taken");
+            model.addAttribute("error","this username is waiting for confirming, if after 24 hours it won't be available then it is taken");
 
         }
         if (!usersForm.getPassword().equals(usersForm.getPasswordConfirm())){
-            model.addAttribute("passwordError", "Passwords don't match");
+            model.addAttribute("error", "Passwords are different from each other");
             return "registration";
         }
         usersForm.setPassword(bCryptPasswordEncoder.encode(usersForm.getPassword()));
@@ -91,6 +96,7 @@ public class RegistrationController {
                 users.setUsername(termUser.getUsername());
                 users.setEmail(termUser.getEmail());
                 users.setPassword(termUser.getPassword());
+                users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
                 userService.saveUser(users);
                 termUserService.delete(termUser.getId());
 
@@ -101,6 +107,7 @@ public class RegistrationController {
             users.setUsername(termUser.getUsername());
             users.setEmail(termUser.getEmail());
             users.setPassword(termUser.getPassword());
+            users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
             userService.saveUser(users);
             termUserService.delete(termUser.getId());
 
@@ -114,4 +121,113 @@ public class RegistrationController {
             }
 
     }
+
+
+    @GetMapping("/login/restore_password")
+    public String getRestorePassword()
+    {
+        return "restore_password_page";
+    }
+
+    @PostMapping("/login/restore_password")
+    public String postRestorePassword(@RequestParam("email") String email)
+    {
+        List<Users> usersList=userService.findWithEmail(email);
+        String message;
+        if(usersList.isEmpty())
+        {
+            message="Hello.\n" +
+                    "We could't find account associated with this email.\n" +
+                    "You can pass registration following this link : http://studentz.herokuapp.com/registration\n\n\n" +
+                    "If you didn't fill the form for restoring password, you can just ignore this email.\n" +
+                    "Best regards. Administration of Studentz portal.";
+            mailSender.send(email,"Password Restoring",message);
+        }
+
+        else
+        {
+            Users users=usersList.get(0);
+            List<TermUser> termUserList=termUserService.findWithEmail(email);
+            TermUser termUser = new TermUser();
+            if(termUserList.isEmpty()) {
+
+                termUser.setUsername(users.getUsername());
+                termUser.setPassword(users.getPassword());
+                termUser.setCounter(0);
+                termUser.setActivationCode(UUID.randomUUID().toString());
+                termUser.setEmail(users.getEmail());
+            }
+            else
+            {
+                termUser=termUserList.get(0);
+                termUser.setActivationCode(UUID.randomUUID().toString());
+            }
+            termUserService.save(termUser);
+            message=String.format("Hello, dear %s\n" +
+                    "You can restore your password following this link http://studentz.herokuapp.com/login/restore_password/%s\n\n" +
+                            "If you didn't require for password restoring, please just ignore this email\n" +
+                            "Best regards. Administration of Studentz portal.",
+                    users.getUsername(),termUser.getActivationCode());
+            mailSender.send(email,"password Restoring",message);
+
+        }
+        return "restoring_message_was_sent";
+    }
+
+
+    @GetMapping("/login/restore_password/{restoringCode}")
+    public String getRestorePasswordWithRestoringCode(@PathVariable("restoringCode") String restoringCode,Model model)
+    {
+        TermUser termUser=termUserService.findByActivationCode(restoringCode);
+        if(termUser!=null)
+        {
+            if(termUser.getEmail().endsWith("@ufaz.az") && termUser.getCounter()==0)
+            {
+                termUser.setCounter(1);
+                return "empty_page";
+            }
+            else
+            {
+                model.addAttribute("restoringCode",restoringCode);
+                return "restoring_password_form";
+            }
+        }
+        else
+        {
+            return "denied_page";
+        }
+    }
+
+
+
+    @PostMapping("/login/restore_password/{restoringCode}")
+    public String postRestorePasswordWithRestoringCode(@PathVariable("restoringCode") String restoringCode,
+                                                       @RequestParam String password,
+                                                       @RequestParam String passwordConfirm)
+    {
+
+        TermUser termUser=termUserService.findByActivationCode(restoringCode);
+        if(termUser!=null)
+        {
+            if(password.equals(passwordConfirm))
+            {
+                Users users=userService.findUserById(termUser.getId());
+                users.setPassword(bCryptPasswordEncoder.encode(password));
+                userService.saveUser(users);
+                return "password_was_restored_successfully";
+            }
+            else
+            {
+                return "restoring_password_form";
+            }
+        }
+        else
+        {
+            return "denied_page";
+        }
+
+    }
+
 }
+
+
