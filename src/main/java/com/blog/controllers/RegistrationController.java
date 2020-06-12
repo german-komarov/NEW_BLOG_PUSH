@@ -3,6 +3,7 @@ package com.blog.controllers;
 import com.blog.entities.Role;
 import com.blog.entities.TermUser;
 import com.blog.entities.Users;
+import com.blog.services.DefaultAvatarService;
 import com.blog.services.RegistrationMailSender;
 import com.blog.services.TermUserService;
 import com.blog.services.UserService;
@@ -27,7 +28,9 @@ public class RegistrationController {
     @Autowired
     private TermUserService termUserService;
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private DefaultAvatarService defaultAvatarService;
 
 
 
@@ -93,10 +96,14 @@ public class RegistrationController {
             else if(termUser.getEmail().endsWith("@ufaz.az") && termUser.getCounter()==1)
             {
                 Users users = new Users();
+
                 users.setUsername(termUser.getUsername());
                 users.setEmail(termUser.getEmail());
                 users.setPassword(termUser.getPassword());
                 users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+                users.setAvatar(defaultAvatarService.defaultAvatar(termUser.getColorOfDefaultAvatar()));
+                users.setStatus("");
+                users.setProfileDescription("");
                 userService.saveUser(users);
                 termUserService.delete(termUser.getId());
 
@@ -108,6 +115,9 @@ public class RegistrationController {
             users.setEmail(termUser.getEmail());
             users.setPassword(termUser.getPassword());
             users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+            users.setAvatar(defaultAvatarService.defaultAvatar(termUser.getColorOfDefaultAvatar()));
+            users.setStatus("");
+            users.setProfileDescription("");
             userService.saveUser(users);
             termUserService.delete(termUser.getId());
 
@@ -227,6 +237,8 @@ public class RegistrationController {
         }
 
     }
+
+
 
 }
 

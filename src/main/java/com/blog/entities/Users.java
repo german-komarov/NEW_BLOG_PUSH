@@ -25,6 +25,13 @@ public class Users implements UserDetails {
     private String email;
 
 
+    private String status;
+
+    private String avatar;
+
+    private String profileDescription;
+
+
 
     public Users() {
     }
@@ -105,4 +112,30 @@ public class Users implements UserDetails {
     }
 
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+
+
+
+    public String getProfileDescription() {
+        return profileDescription;
+    }
+
+    public void setProfileDescription(String profileDescription) {
+        this.profileDescription = profileDescription;
+    }
 }

@@ -32,6 +32,10 @@ public class TermUser {
     private int counter;
 
 
+    @NotBlank(message = "Please choose color of default profile's photo")
+    private String colorOfDefaultAvatar;
+
+
     public TermUser() {
     }
 
@@ -89,5 +93,14 @@ public class TermUser {
 
     public void setCounter(int counter) {
         this.counter = counter;
+    }
+
+
+    public String getColorOfDefaultAvatar() {
+        return colorOfDefaultAvatar;
+    }
+
+    public void setColorOfDefaultAvatar(String colorOfDefaultAvatar) {
+        this.colorOfDefaultAvatar = colorOfDefaultAvatar;
     }
 }

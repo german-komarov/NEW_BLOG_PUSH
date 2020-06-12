@@ -8,4 +8,5 @@ import java.util.List;
 public interface Blog1Repository extends JpaRepository<Blog1,Long> {
 
     List<Blog1> findByCategory(String topic);
+
 }

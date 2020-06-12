@@ -19,11 +19,13 @@
 </div>
 
 <div align="center>">
+    <a href="/main/user_profile">My Profile</a>
+    <br>
     <a href="/main/blog">Blog</a>
     <br>
     <a th:if="${role}==admin or ${role}==moderator" href="/main/admin">Admin</a>
     <br>
-    <a th:href="@{/main/message}"><span>Messages(<span th:text="${counter}"/>)</span></a>
+    <a th:href="@{/main/message}"><span>Messages(<span th:text="${counter}"></span>)</span></a>
 </div>
 
 </body>
