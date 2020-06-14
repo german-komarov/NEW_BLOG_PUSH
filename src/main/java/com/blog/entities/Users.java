@@ -31,6 +31,8 @@ public class Users implements UserDetails {
 
     private String profileDescription;
 
+    private String colorOfDefaultAvatar;
+
 
 
     public Users() {
@@ -128,8 +130,13 @@ public class Users implements UserDetails {
         this.avatar = avatar;
     }
 
+    public String getColorOfDefaultAvatar() {
+        return colorOfDefaultAvatar;
+    }
 
-
+    public void setColorOfDefaultAvatar(String colorOfDefaultAvatar) {
+        this.colorOfDefaultAvatar = colorOfDefaultAvatar;
+    }
 
     public String getProfileDescription() {
         return profileDescription;

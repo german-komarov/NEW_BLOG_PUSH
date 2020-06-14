@@ -101,6 +101,7 @@ public class RegistrationController {
                 users.setEmail(termUser.getEmail());
                 users.setPassword(termUser.getPassword());
                 users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+                users.setProfileDescription(termUser.getColorOfDefaultAvatar());
                 users.setAvatar(defaultAvatarService.defaultAvatar(termUser.getColorOfDefaultAvatar()));
                 users.setStatus("");
                 users.setProfileDescription("");
@@ -115,6 +116,7 @@ public class RegistrationController {
             users.setEmail(termUser.getEmail());
             users.setPassword(termUser.getPassword());
             users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
+            users.setProfileDescription(termUser.getColorOfDefaultAvatar());
             users.setAvatar(defaultAvatarService.defaultAvatar(termUser.getColorOfDefaultAvatar()));
             users.setStatus("");
             users.setProfileDescription("");
@@ -166,6 +168,7 @@ public class RegistrationController {
                 termUser.setCounter(0);
                 termUser.setActivationCode(UUID.randomUUID().toString());
                 termUser.setEmail(users.getEmail());
+                termUser.setColorOfDefaultAvatar(users.getColorOfDefaultAvatar());
             }
             else
             {
