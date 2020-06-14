@@ -17,7 +17,7 @@
     <br>
     <a href="/main/message/sentMessage">Sent messages</a>
     <br>
-    <a href="/main/message/deleteMessage">Deleted Messages</a>
+    <a href="/main/message/deletedMessage">Deleted Messages</a>
 
 </div>
 <body>
@@ -40,13 +40,13 @@
             <tr th:each="nm : ${newList}">
                 <td th:text="${nm.sender}">Sender</td>
                 <td th:text="${nm.subject}">Subject</td>
-                <td th:text="${nm.receivedAt}">Received At</td>
+                <td th:text="${nm.time}">Received At</td>
                 
                 <td>
                     <a th:href="@{'/main/message/readNewMessage/' + ${nm.id}}">Read</a>
                 </td>
                 <td>
-                    <a th:href="@{'/main/message/delete/NewMessage/'+${nm.id}}">Delete</a>
+                    <a th:href="@{'/main/message/delete/'+${nm.id}}">Delete</a>
                 </td>
             </tr>
             </tbody>
@@ -73,13 +73,13 @@
             <tr th:each="cm : ${checkedList}">
                 <td th:text="${cm.sender}">Sender</td>
                 <td th:text="${cm.subject}">Subject</td>
-                <td th:text="${cm.receivedAt}">Received At</td>
+                <td th:text="${cm.time}">Received At</td>
 
                 <td>
                     <a th:href="@{'/main/message/readCheckedMessage/' + ${cm.id}}">Read</a>
                 </td>
                 <td>
-                    <a th:href="@{'/main/message/delete/CheckedMessage/'+${cm.id}}">Delete</a>
+                    <a th:href="@{'/main/message/delete/'+${cm.id}}">Delete</a>
                 </td>
             </tr>
             </tbody>

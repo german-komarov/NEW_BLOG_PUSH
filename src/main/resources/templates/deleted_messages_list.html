@@ -26,14 +26,14 @@
         <tr th:each="dm : ${deletedSentMessagesList}">
             <td th:text="${dm.receiver}">Receiver</td>
             <td th:text="${dm.subject}">Subject</td>
-            <td th:text="${dm.originalTime}">Sent At</td>
+            <td th:text="${dm.time}">Sent At</td>
 
             <td>
                 <a th:href="@{'/main/message/readDeletedMessage/' + ${dm.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/main/message/delete/AreYouSureDelete/'+${dm.id}}">Delete</a>
-                <a th:href="@{'/main/message/restoreSentMessage/'+${dm.id}}">Restore</a>
+                <a th:href="@{'/main/message/delete/areYouSureDelete/'+${dm.id}}">Delete</a>
+                <a th:href="@{'/main/message/restoreMessage/'+${dm.id}}">Restore</a>
             </td>
         </tr>
         </tbody>
@@ -57,14 +57,14 @@
         <tr th:each="dm : ${deletedNewMessagesList}">
             <td th:text="${dm.sender}">Sender</td>
             <td th:text="${dm.subject}">Subject</td>
-            <td th:text="${dm.originalTime}">Sent At</td>
+            <td th:text="${dm.time}">Sent At</td>
 
             <td>
                 <a th:href="@{'/main/message/readDeletedMessage/' + ${dm.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/main/message/delete/AreYouSureDelete/'+${dm.id}}">Delete</a>
-                <a th:href="@{'/main/message/restoreNewMessage/'+${dm.id}}">Restore</a>
+                <a th:href="@{'/main/message/delete/areYouSureDelete/'+${dm.id}}">Delete</a>
+                <a th:href="@{'/main/message/restoreMessage/'+${dm.id}}">Restore</a>
             </td>
         </tr>
         </tbody>
@@ -89,14 +89,14 @@
         <tr th:each="dm : ${deletedCheckedMessagesList}">
             <td th:text="${dm.sender}">Sender</td>
             <td th:text="${dm.subject}">Subject</td>
-            <td th:text="${dm.originalTime}">Sent At</td>
+            <td th:text="${dm.time}">Sent At</td>
 
             <td>
                 <a th:href="@{'/main/message/readDeletedMessage/' + ${dm.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/main/message/delete/AreYouSureDelete/'+${dm.id}}">Delete</a>
-                <a th:href="@{'/main/message/restoreCheckedMessage/'+${dm.id}}">Restore</a>
+                <a th:href="@{'/main/message/delete/areYouSureDelete/'+${dm.id}}">Delete</a>
+                <a th:href="@{'/main/message/restoreMessage/'+${dm.id}}">Restore</a>
             </td>
         </tr>
         </tbody>

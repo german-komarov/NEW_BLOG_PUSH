@@ -33,6 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
             http
                     .authorizeRequests()
+                    .antMatchers("/main").hasAnyRole("USER","ADMIN","MODERATOR")
                     .antMatchers("/main/user_profile/**").hasAnyRole("USER","ADMIN","MODERATOR")
                     .antMatchers("/main/admin/**").hasAnyRole("ADMIN","MODERATOR")
                     .antMatchers("/main/admin_special/**").hasRole("ADMIN")
@@ -40,7 +41,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers("/main/blog/**").hasAnyRole("USER","ADMIN","MODERATOR")
                     .antMatchers("/main/message/**").hasAnyRole("USER","ADMIN","MODERATOR")
                     .antMatchers("/").permitAll()
-                    .antMatchers("/registration/**","login").permitAll()
+                    .antMatchers("/registration/**","/login").permitAll()
                     .and()
                     .formLogin()
                     .loginPage("/login")

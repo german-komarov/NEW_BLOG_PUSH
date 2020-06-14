@@ -9,10 +9,13 @@
     <a href="/main/message/deleteMessage">back</a>
 </div>
 <body>
-<h2 th:if="${message.deletedFrom}==${sent}">
+<h2 th:if="${message.source}==${sent}">
     To: <span th:text="${message.receiver}" th:remove="tag"></span>
 </h2>
-<h2 th:if="${message.deletedFrom}==${check}">
+<h2 th:if="${message.source}==${checked}">
+    From: <span th:text="${message.sender}" th:remove="tag"></span>
+</h2>
+<h2 th:if="${message.source}==${new}">
     From: <span th:text="${message.sender}" th:remove="tag"></span>
 </h2>
 <br>
@@ -20,16 +23,16 @@
     Subject : <span th:text="${message.subject}" th:remove="tag"></span>
 </h2>
 <br>
-<h2 th:if="${message.deletedFrom}==${sent}">
-    Sent At: <span th:text="${message.originalTime}" th:remove="tag"></span>
+<h2 th:if="${message.source}==${sent}">
+    Sent At: <span th:text="${message.time}" th:remove="tag"></span>
 </h2>
-<h2 th:if="${message.deletedFrom}==${check}">
-    Received At: <span th:text="${message.originalTime}" th:remove="tag"></span>
+<h2 th:if="${message.source}==${checked}">
+    Received At: <span th:text="${message.time}" th:remove="tag"></span>
 </h2>
 
 
 <br>
-<h3><pre th:text="${message.content}" >Subtitle</pre></h3>
+<h3><pre th:text="${message.message}" >Subtitle</pre></h3>
 
 
 

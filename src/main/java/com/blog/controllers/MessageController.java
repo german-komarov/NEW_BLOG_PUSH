@@ -1,292 +1,206 @@
 package com.blog.controllers;
 
 
+import com.blog.entities.Message;
 import com.blog.entities.Users;
-import com.blog.entities.message.CheckedMessage;
-import com.blog.entities.message.DeletedMessage;
-import com.blog.entities.message.NewMessage;
-import com.blog.entities.message.SentMessage;
-import com.blog.services.messageServices.CheckedMessageService;
-import com.blog.services.messageServices.DeletedMessageService;
-import com.blog.services.messageServices.NewMessageService;
-import com.blog.services.messageServices.SentMessageService;
+import com.blog.services.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/main/message")
 public class MessageController {
     @Autowired
-    private CheckedMessageService checkedMessageService;
-
-    @Autowired
-    private DeletedMessageService deletedMessageService;
-
-    @Autowired
-    private NewMessageService newMessageService;
-
-    @Autowired
-    private SentMessageService sentMessageService;
-
+    private MessageService messageService;
 
     //All messages
-    @GetMapping("/main/message")
-    public String allMessages(Model model)
+    @GetMapping
+    public String allMessages(@AuthenticationPrincipal Users users, Model model)
     {
-        //get current user
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        //new messages
-        List<NewMessage> newMessageList=newMessageService.newMessagesList(users.getUsername());
-        //checked messages
-        List<CheckedMessage> checkedMessageList=checkedMessageService.checkedMessagesList(users.getUsername());
+
         //adding attributes
-        model.addAttribute("newCounter",newMessageList.size());
-        model.addAttribute("newList",newMessageList);
-        model.addAttribute("checkedList",checkedMessageList);
+        model.addAttribute("newCounter",messageService.getNewMessages(users.getUsername()).size());
+        model.addAttribute("newList",messageService.getNewMessages(users.getUsername()));
+        model.addAttribute("checkedList",messageService.getCheckedMessages(users.getUsername()));
 
         return "messages";
     }
 
-    //Read checked messages
-    @GetMapping("/main/message/readCheckedMessage/{id}")
-    public String readCheckedMessage(Model model, @PathVariable(name="id") long id)
+    //Read new message
+    @GetMapping(value="/readNewMessage/{id}")
+    public String readNewMessage(@AuthenticationPrincipal Users users,@PathVariable(name="id") long id, Model model)
     {
-        //get current user
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!checkedMessageService.get(id).getReceiver().equals(users.getUsername()))
+        Message message=messageService.getOneMessage(id);
+
+        if (!message.getReceiver().equals(users.getUsername()))
         {
             return "denied_page";
         }
-        CheckedMessage checkedMessage=checkedMessageService.checkedMessage(users.getUsername(),id);
-        model.addAttribute("message",checkedMessage);
+
+        message.setSource("checked");
+        messageService.save(message);
+        model.addAttribute("message",message);
         return "read_message";
     }
 
-    //Read deleted messages
-    @GetMapping("/main/message/readDeletedMessage/{id}")
-    public String readDeletedMessage(Model model, @PathVariable(name="id") long id)
+
+    //Read checked message
+    @GetMapping("/readCheckedMessage/{id}")
+    public String readCheckedMessage(@AuthenticationPrincipal Users users,Model model, @PathVariable(name="id") long id)
     {
-        //get current user
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!deletedMessageService.get(id).getDeleter().equals(users.getUsername()))
+        Message message=messageService.getOneMessage(id);
+        if (!message.getReceiver().equals(users.getUsername()))
         {
             return "denied_page";
         }
-        DeletedMessage deletedMessage=deletedMessageService.deletedMessage(users.getUsername(),id);
-        model.addAttribute("message",deletedMessage);
-        model.addAttribute("new","NewMessage");
-        model.addAttribute("sent","SentMessage");
-        model.addAttribute("check","CheckedMessage");
+        model.addAttribute("message",message);
+        return "read_message";
+    }
+
+
+    //Read sent message
+    @GetMapping("/readSentMessage/{id}")
+    public String readSentMessages(@AuthenticationPrincipal Users users,Model model,@PathVariable(name="id") long id)
+    {
+        Message message=messageService.getOneMessage(id);
+        if (!message.getSender().equals(users.getUsername()))
+        {
+            return "denied_page";
+        }
+        model.addAttribute("message",message);
+        return "read_sent_message";
+    }
+
+
+    //Read deleted message
+    @GetMapping("/readDeletedMessage/{id}")
+    public String readDeletedMessage(@AuthenticationPrincipal Users users,Model model, @PathVariable(name="id") long id)
+    {
+        Message message=messageService.getOneMessage(id);
+        if (!(message.getReceiver().equals(users.getUsername()) || message.getSender().equals(users.getUsername())))
+        {
+            return "denied_page";
+        }
+
+        model.addAttribute("message",message);
+        model.addAttribute("new","new");
+        model.addAttribute("sent","sent");
+        model.addAttribute("checked","checked");
         return "read_deleted_message";
     }
 
-    //Read new message
-    @GetMapping(value="/main/message/readNewMessage/{id}")
-    public String readNewMessage(@PathVariable(name="id") long id, Model model)
+
+    @GetMapping("/writeMessage")
+    public String getWrite(@AuthenticationPrincipal Users users,Model model)
     {
-        //get current user
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!newMessageService.get(id).getReceiver().equals(users.getUsername()))
-        {
-            return "denied_page";
-        }
-        NewMessage newMessage=newMessageService.newMessage(users.getUsername(),id);
-
-        CheckedMessage checkedMessage=new CheckedMessage();
-        checkedMessage.setSubject(newMessage.getSubject());
-        checkedMessage.setContent(newMessage.getContent());
-        checkedMessage.setReceivedAt(newMessage.getReceivedAt());
-        checkedMessage.setReceiver(newMessage.getReceiver());
-        checkedMessage.setSender(newMessage.getSender());
-        checkedMessage.setSent_id(newMessage.getSent_id());
-        checkedMessageService.save(checkedMessage);
-        model.addAttribute("message",newMessage);
-        newMessageService.delete(newMessage.getId());
-        return "read_new_message";
-    }
-
-
-    @GetMapping("/main/message/writeMessage")
-    public String getWrite(Model model)
-    {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        SentMessage sentMessage=new SentMessage();
-        sentMessage.setSender(users.getUsername());
-        sentMessage.setSubject("No subject");
-        model.addAttribute("sentMessage",sentMessage);
+        Message message=new Message();
+        message.setSender(users.getUsername());
+        message.setSubject("No subject");
+        message.setSource("new");
+        message.setDeletedByReceiver((short) 0);
+        message.setDeletedBySender((short)0);
+        model.addAttribute("message",message);
         return "write_message";
 
     }
 
-    @PostMapping(value="/main/message/writeMessage/send")
-    public String postWrite(@ModelAttribute("sentMessage") SentMessage sentMessage)
+    @PostMapping(value="/writeMessage/send")
+    public String postWrite(@ModelAttribute("sentMessage") Message message)
     {
-        NewMessage newMessage=new NewMessage();
-        newMessage.setContent(sentMessage.getContent());
-        newMessage.setReceiver(sentMessage.getReceiver());
-        newMessage.setSender(sentMessage.getSender());
-        newMessage.setSubject(sentMessage.getSubject());
-        sentMessageService.save(sentMessage);
-        newMessage.setSent_id(sentMessage.getId());
-        newMessageService.save(newMessage);
-
-        return "successfully_sent_message";
-
+        messageService.save(message);
+        return "redirect:/main/message";
     }
 
-
-    @GetMapping("/main/message/sentMessage")
-    public String allSentMessages(Model model)
+    @GetMapping("/sentMessage")
+    public String allSentMessages(@AuthenticationPrincipal Users users,Model model)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<SentMessage> sentMessageList=sentMessageService.sentMessagesList(users.getUsername());
-        model.addAttribute("sentList",sentMessageList);
+
+        model.addAttribute("sentList",messageService.getSentMessages(users.getUsername()));
         return "sent_messages_list";
 
     }
 
-    @GetMapping("/main/message/deleteMessage")
-    public String allDeletedMessages(Model model)
+
+    @GetMapping("/deletedMessage")
+    public String allDeletedMessages(@AuthenticationPrincipal Users users,Model model)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        List<DeletedMessage> deletedNewMessagesList=deletedMessageService.deletedNewMessagesList(users.getUsername());
-        model.addAttribute("deletedNewMessagesList",deletedNewMessagesList);
-        List<DeletedMessage> deletedCheckedMessagesList=deletedMessageService.deletedCheckedMessagesList(users.getUsername());
-        model.addAttribute("deletedCheckedMessagesList",deletedCheckedMessagesList);
-        List<DeletedMessage> deletedSentMessagesList=deletedMessageService.deletedSentMessagesList(users.getUsername());
-        model.addAttribute("deletedSentMessagesList",deletedSentMessagesList);
+
+        model.addAttribute("deletedNewMessagesList",messageService.getDeletedNewMessages(users.getUsername()));
+        model.addAttribute("deletedCheckedMessagesList",messageService.getDeletedCheckedMessages(users.getUsername()));
+        model.addAttribute("deletedSentMessagesList",messageService.getDeletedSentMessages(users.getUsername()));
         return "deleted_messages_list";
-
-    }
-
-    @GetMapping("/main/message/delete/deleteAtAll/{id}")
-    public String deleteAtAll(@PathVariable(name="id") long id)
-    {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!deletedMessageService.get(id).getDeleter().equals(users.getUsername()))
-        {
-            return "denied_page";
-        }
-        deletedMessageService.delete(id);
-        return "deleted_successful";
     }
 
 
-
-    @GetMapping("/main/message/readSentMessage/{id}")
-    public String readSentMessages(Model model,@PathVariable(name="id") long id)
+    @GetMapping("/answer/{sender}")
+    public String getAnswer(@AuthenticationPrincipal Users users,Model model,@PathVariable(name="sender") String sender)
     {
-        //get current user
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!sentMessageService.get(id).getSender().equals(users.getUsername()))
-        {
-            return "denied_page";
-        }
-        SentMessage sentMessage=sentMessageService.sentMessage(users.getUsername(),id);
-        model.addAttribute("message",sentMessage);
-        return "read_sent_message";
-    }
-
-    @GetMapping("/main/message/answer/{sender}")
-    public String getAnswer(Model model,@PathVariable(name="sender") String sender)
-    {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        SentMessage sentMessage=new SentMessage();
-        sentMessage.setSender(users.getUsername());
-        sentMessage.setReceiver(sender);
-        sentMessage.setSubject("No subject");
-        model.addAttribute("sentMessage",sentMessage);
+        Message message=new Message();
+        message.setSender(users.getUsername());
+        message.setReceiver(sender);
+        message.setSubject("No subject");
+        message.setSource("new");
+        message.setDeletedByReceiver((short) 0);
+        message.setDeletedBySender((short)0);
+        model.addAttribute("message",message);
         return "answer_message";
-
     }
 
-
-    @GetMapping("/main/message/delete/NewMessage/{id}")
-    public String deleteNew(@PathVariable(name="id") long id)
+    @GetMapping("/delete/{id}")
+    public String deleteMessage(@AuthenticationPrincipal Users users,@PathVariable ("id") Long id)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        NewMessage newMessage=newMessageService.get(id);
-        if(!newMessage.getReceiver().equals(users.getUsername()))
+        Message message=messageService.getOneMessage(id);
+        if(message.getSender().equals(users.getUsername()))
+        {
+            message.setDeletedBySender((short) 1);
+            messageService.save(message);
+            return "redirect:/main/message/sentMessage";
+        }
+
+        else if(message.getReceiver().equals(users.getUsername()))
+        {
+            message.setDeletedByReceiver((short)1);
+            messageService.save(message);
+            return "redirect:/main/message";
+        }
+
+        else
         {
             return "denied_page";
         }
-        DeletedMessage deletedMessage=new DeletedMessage();
-        deletedMessage.setContent(newMessage.getContent());
-        deletedMessage.setDeletedFrom(newMessage.getSource());
-        deletedMessage.setOriginalTime(newMessage.getReceivedAt());
-        deletedMessage.setReceiver(newMessage.getReceiver());
-        deletedMessage.setSender(newMessage.getSender());
-        deletedMessage.setSubject(newMessage.getSubject());
-        deletedMessage.setDeleter(users.getUsername());
-        deletedMessage.setSent_id(newMessage.getSent_id());
-        deletedMessageService.save(deletedMessage);
-        newMessageService.delete(id);
-        return "redirect:/main/message";
-
     }
 
-    @GetMapping("/main/message/delete/CheckedMessage/{id}")
-    public String deleteChecked(@PathVariable(name="id") long id)
+    @GetMapping("/restoreMessage/{id}")
+    public String restoreMessage(@AuthenticationPrincipal Users users,@PathVariable("id") Long id)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        CheckedMessage checkedMessage=checkedMessageService.get(id);
-        if(!checkedMessage.getReceiver().equals(users.getUsername()))
+        Message message=messageService.getOneMessage(id);
+        if(message.getSender().equals(users.getUsername()))
+        {
+            message.setDeletedBySender((short) 0);
+            messageService.save(message);
+            return "redirect:/main/message/deletedMessage";
+        }
+        else if(message.getReceiver().equals(users.getUsername()))
+        {
+            message.setDeletedByReceiver((short) 0);
+            messageService.save(message);
+            return "redirect:/main/message/deletedMessage";
+        }
+
+        else
         {
             return "denied_page";
         }
-        DeletedMessage deletedMessage=new DeletedMessage();
-        deletedMessage.setContent(checkedMessage.getContent());
-        deletedMessage.setDeletedFrom(checkedMessage.getSource());
-        deletedMessage.setOriginalTime(checkedMessage.getReceivedAt());
-        deletedMessage.setReceiver(checkedMessage.getReceiver());
-        deletedMessage.setSender(checkedMessage.getSender());
-        deletedMessage.setSubject(checkedMessage.getSubject());
-        deletedMessage.setDeleter(users.getUsername());
-        deletedMessage.setSent_id(checkedMessage.getSent_id());
-        deletedMessageService.save(deletedMessage);
-        checkedMessageService.delete(id);
-
-        return "redirect:/main/message";
     }
 
-    @GetMapping("/main/message/delete/SentMessage/{id}")
-    public String deleteSent(@PathVariable(name="id") long id)
+    @GetMapping("/delete/areYouSureDelete/{id}")
+    public String areYouSureDelete(@AuthenticationPrincipal Users users,@PathVariable(name="id") long id,Model model)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        SentMessage sentMessage=sentMessageService.get(id);
-        if(!sentMessage.getSender().equals(users.getUsername()))
-        {
-            return "denied_page";
-        }
-        DeletedMessage deletedMessage=new DeletedMessage();
-        deletedMessage.setContent(sentMessage.getContent());
-        deletedMessage.setDeletedFrom(sentMessage.getSource());
-        deletedMessage.setOriginalTime(sentMessage.getSentAt());
-        deletedMessage.setReceiver(sentMessage.getReceiver());
-        deletedMessage.setSender(sentMessage.getSender());
-        deletedMessage.setSubject(sentMessage.getSubject());
-        deletedMessage.setDeleter(users.getUsername());
-        deletedMessage.setSent_id(sentMessage.getId());
-        deletedMessageService.save(deletedMessage);
-        sentMessageService.delete(id);
-        return "redirect:/main/message";
-    }
-
-
-
-
-    @GetMapping("/main/message/delete/AreYouSureDelete/{id}")
-    public String areYouSureDelete(@PathVariable(name="id") long id,Model model)
-    {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!deletedMessageService.get(id).getDeleter().equals(users.getUsername()))
+        Message message=messageService.getOneMessage(id);
+        if(!(message.getSender().equals(users.getUsername()) || message.getReceiver().equals(users.getUsername())))
         {
             return "denied_page";
         }
@@ -295,90 +209,54 @@ public class MessageController {
 
     }
 
-
-
-    @GetMapping("/main/message/restoreSentMessage/{id}")
-    public String restoreSentMessage(@PathVariable(name="id") long id)
+    @GetMapping("/delete/deleteAtAll/{id}")
+    public String deleteAtAll(@AuthenticationPrincipal Users users, @PathVariable(name="id") long id)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        DeletedMessage deletedMessage=deletedMessageService.get(id);
-        if(!deletedMessage.getDeleter().equals(users.getUsername()))
+        Message message=messageService.getOneMessage(id);
+        if(message.getSender().equals(users.getUsername()))
         {
-            return "denied_page";
+            if(message.getDeletedByReceiver()!=(short)2) {
+                message.setDeletedBySender((short) 2);
+                messageService.save(message);
+            }
+            else
+            {
+                messageService.delete(id);
+            }
+            return "redirect:/main/message/deletedMessage";
         }
-        SentMessage sentMessage=new SentMessage();
-        sentMessage.setReceiver(deletedMessage.getReceiver());
-        sentMessage.setSubject(deletedMessage.getSubject());
-        sentMessage.setSender(deletedMessage.getSender());
-        sentMessage.setContent(deletedMessage.getContent());
-        //sentMessage.setSentAt(deletedMessage.getOriginalTime());
-        sentMessageService.save(sentMessage);
-        sentMessage=sentMessageService.get(sentMessage.getId());
-        sentMessage.setSentAt(deletedMessage.getOriginalTime());
-        sentMessageService.save(sentMessage);
 
-        deletedMessageService.delete(id);
-        return "successfully_restored";
-    }
-
-
-    @GetMapping("/main/message/restoreNewMessage/{id}")
-    public String restoreNewMessage(@PathVariable(name="id") long id)
-    {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        DeletedMessage deletedMessage=deletedMessageService.get(id);
-        if(!deletedMessage.getDeleter().equals(users.getUsername()))
+        else if(message.getReceiver().equals(users.getUsername()))
         {
-            return "denied_page";
-        }
-        NewMessage newMessage=new NewMessage();
-        newMessage.setSent_id(deletedMessage.getSent_id());
-        newMessage.setSubject(deletedMessage.getSubject());
-        newMessage.setSender(deletedMessage.getSender());
-        newMessage.setReceiver(deletedMessage.getReceiver());
-        newMessage.setContent(deletedMessage.getContent());
-        //newMessage.setReceivedAt(deletedMessage.getOriginalTime());
-        newMessageService.save(newMessage);
-        newMessage=newMessageService.get(newMessage.getId());
-        newMessage.setReceivedAt(deletedMessage.getOriginalTime());
-        newMessageService.save(newMessage);
-        deletedMessageService.delete(id);
-        return "successfully_restored";
-    }
+            if(message.getDeletedBySender()!=(short)2)
+            {
+                message.setDeletedByReceiver((short) 2);
+                messageService.save(message);
+            }
+            else
+            {
+                messageService.delete(id);
+            }
+            return "redirect:/main/message/deletedMessage";
 
-    @GetMapping("/main/message/restoreCheckedMessage/{id}")
-    public String restoreCheckedMessage(@PathVariable(name="id") long id)
-    {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        DeletedMessage deletedMessage=deletedMessageService.get(id);
-        if(!deletedMessage.getDeleter().equals(users.getUsername()))
+        }
+
+        else
         {
             return "denied_page";
         }
 
-        CheckedMessage checkedMessage=new CheckedMessage();
-        checkedMessage.setSent_id(deletedMessage.getSent_id());
-        checkedMessage.setSender(deletedMessage.getSender());
-        checkedMessage.setReceiver(deletedMessage.getReceiver());
-        //checkedMessage.setReceivedAt(deletedMessage.getOriginalTime());
-        checkedMessage.setContent(deletedMessage.getContent());
-        checkedMessage.setSubject(deletedMessage.getSubject());
-
-        checkedMessageService.save(checkedMessage);
-        checkedMessage=checkedMessageService.get(checkedMessage.getId());
-        checkedMessage.setReceivedAt(deletedMessage.getOriginalTime());
-        checkedMessageService.save(checkedMessage);
-        deletedMessageService.delete(id);
-        return "successfully_restored";
-
 
     }
 
-    @GetMapping("/main/message/delete/AreYouSureDeleteFromBoth/{id}")
-    public String areYouSureDeleteFromBoth(@PathVariable(name="id") long id,Model model)
+
+
+
+    @GetMapping("/delete/areYouSureDeleteFromBoth/{id}")
+    public String areYouSureDeleteFromBoth(@AuthenticationPrincipal Users users,@PathVariable(name="id") long id,Model model)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if(!sentMessageService.get(id).getSender().equals(users.getUsername()))
+
+        if(!messageService.getOneMessage(id).getSender().equals(users.getUsername()))
         {
             return "denied_page";
         }
@@ -386,49 +264,18 @@ public class MessageController {
         return "are_you_sure_delete_from_both";
     }
 
-    @GetMapping("/main/message/delete/deleteAtAllFromBoth/{id}")
-    public String deleteAtAllFromBoth(@PathVariable(name="id") long id)
+    @GetMapping("/delete/deleteAtAllFromBoth/{id}")
+    public String deleteAtAllFromBoth(@AuthenticationPrincipal Users users,@PathVariable(name="id") long id)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (!newMessageService.findBySentid(id).isEmpty())
+
+        Message message=messageService.getOneMessage(id);
+
+        if(message.getSender().equals(users.getUsername()))
         {
-            if(!newMessageService.findBySentid(id).get(0).getSender().equals(users.getUsername()))
-            {
-                return "denied_page";
-            }
-            newMessageService.delete(newMessageService.findBySentid(id).get(0).getId());
-            sentMessageService.delete(id);
-            return "successfully_deleted_from_both";
+            messageService.delete(id);
+            return "redirect:/main/message/deletedMessage";
         }
 
-
-        if(!checkedMessageService.findBySentid(id).isEmpty())
-        {
-            if(!checkedMessageService.findBySentid(id).get(0).getSender().equals(users.getUsername()))
-            {
-                return "denied_page";
-            }
-            checkedMessageService.delete(checkedMessageService.findBySentid(id).get(0).getId());
-            sentMessageService.delete(id);
-            return "successfully_deleted_from_both";
-        }
-
-        if (!deletedMessageService.findBySentid(id).isEmpty())
-        {
-            if(!deletedMessageService.findBySentid(id).get(0).getSender().equals(users.getUsername()))
-            {
-                return "denied_page";
-            }
-            deletedMessageService.delete(deletedMessageService.findBySentid(id).get(0).getId());
-            sentMessageService.delete(id);
-            return "successfully_deleted_from_both";
-        }
-
-        if(sentMessageService.get(id).getSender().equals(users.getUsername()))
-        {
-            sentMessageService.delete(id);
-            return "already_deleted";
-        }
         else
         {
             return "denied_page";
@@ -436,9 +283,13 @@ public class MessageController {
 
 
 
-
-
     }
+
+
+
+
+
+
 
 
 

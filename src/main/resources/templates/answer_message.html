@@ -12,25 +12,40 @@
 <div align="center">
     <h1>Message</h1>
     <br />
-    <form action="#" th:action="@{/main/message/writeMessage/send}" th:object="${sentMessage}"
+    <form action="#" th:action="@{/main/message/writeMessage/send}" th:object="${message}"
           method="post">
 
         <table border="0" cellpadding="10">
             <tr>
                 <td>To:</td>
-                <td><input type="text" th:field="*{receiver}" readonly="readonly"/></td>
+                <td><label>
+                    <input type="text" th:field="*{receiver}" readonly="readonly"/>
+                </label></td>
             </tr>
             <tr>
                 <td>Subject</td>
-                <td><input type="text" th:field="*{subject}" /></td>
+                <td><label>
+                    <input type="text" th:field="*{subject}" />
+                </label></td>
             </tr>
             <tr>
                 <td><input type="hidden"  th:field="*{sender}" readonly="readonly"/></td>
             </tr>
+            <tr>
+                <td><input type="hidden"  th:field="*{source}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td><input type="hidden"  th:field="*{deletedBySender}" readonly="readonly"/></td>
+            </tr>
+            <tr>
+                <td><input type="hidden"  th:field="*{deletedByReceiver}" readonly="readonly"/></td>
+            </tr>
 
             <tr>
                 <td>Content:</td>
-                <td><textarea type="text" Cols="50" placeholder="Type message" th:field="*{content}" /></td>
+                <td><label>
+                    <textarea type="text" Cols="50" placeholder="Type message" th:field="*{message}"></textarea>
+                </label></td>
             </tr>
             <tr>
                 <td colspan="2"><button type="submit">Send</button> </td>

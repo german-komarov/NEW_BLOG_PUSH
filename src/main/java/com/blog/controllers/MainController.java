@@ -5,8 +5,10 @@ import com.blog.entities.Blog1;
 import com.blog.entities.Role;
 import com.blog.entities.Users;
 import com.blog.services.Blog1Service;
-import com.blog.services.messageServices.NewMessageService;
+import com.blog.services.MessageService;
+import net.bytebuddy.asm.Advice;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,6 +25,9 @@ public class MainController {
     @Autowired
     private Blog1Service blog1Service;
 
+    @Autowired
+    private MessageService messageService;
+
     @GetMapping("/")
     public String enterPage(Model model)
     {
@@ -31,31 +36,30 @@ public class MainController {
         return "entering_page";
     }
 
-    @Autowired
-    private NewMessageService newMessageService;
+
 
     @GetMapping("/main")
-    public String main_page(Model model)
+    public String main_page(@AuthenticationPrincipal Users users, Model model)
     {
-        Users users = (Users) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
         Set<Role> roleSet= users.getRoles();
         for (Role role:roleSet)
         {
             if (role.getName().equals("ROLE_MODERATOR"))
             {
                 model.addAttribute("role","moderator");
-                model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
+                model.addAttribute("counter",messageService.getNewMessages(users.getUsername()).size());
                 return "main_page";
             }
 
             else if(role.getName().equals("ROLE_ADMIN"))
             {
                 model.addAttribute("role","admin");
-                model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
+                model.addAttribute("counter",messageService.getNewMessages(users.getUsername()).size());
                 return "main_page";
             }
         }
-        model.addAttribute("counter",newMessageService.newMessagesList(users.getUsername()).size());
+        model.addAttribute("counter",messageService.getNewMessages(users.getUsername()).size());
 
         model.addAttribute("role","not_admin");
 

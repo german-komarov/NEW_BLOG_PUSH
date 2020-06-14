@@ -18,12 +18,12 @@
 </h2>
 <br>
 <h4>
-    Received at : <span th:text="${message.receivedAt}" th:remove="tag"></span>
+    Received at : <span th:text="${message.time}" th:remove="tag"></span>
 </h4>
 
 
 <br>
-<h3><pre th:text="${message.content}" >Subtitle</pre></h3>
+<h3><pre th:text="${message.message}" >Subtitle</pre></h3>
 
 <br><br>
 <a th:href="@{'/main/message/answer/'+${message.sender}}">Answer</a>

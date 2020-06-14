@@ -26,14 +26,14 @@
         <tr th:each="sm : ${sentList}">
             <td th:text="${sm.receiver}">Sender</td>
             <td th:text="${sm.subject}">Subject</td>
-            <td th:text="${sm.sentAt}">Received At</td>
+            <td th:text="${sm.time}">Received At</td>
 
             <td>
                 <a th:href="@{'/main/message/readSentMessage/' + ${sm.id}}">Read</a>
             </td>
             <td>
-                <a th:href="@{'/main/message/delete/SentMessage/'+${sm.id}}">Delete</a>
-                <a th:href="@{'/main/message/delete/AreYouSureDeleteFromBoth/'+${sm.id}}">Delete From Both</a>
+                <a th:href="@{'/main/message/delete/'+${sm.id}}">Delete</a>
+                <a th:href="@{'/main/message/delete/areYouSureDeleteFromBoth/'+${sm.id}}">Delete From Both</a>
 
             </td>
         </tr>
