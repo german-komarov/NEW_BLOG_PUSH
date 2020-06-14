@@ -51,6 +51,11 @@ public class RegistrationController {
             model.addAttribute("error", "User with this username already exists");
             return "registration";
         }
+        if(usersForm.getColorOfDefaultAvatar()!=null)
+        {
+            model.addAttribute("error", "Please choose color of default avatar");
+            return "registration";
+        }
         if(!userService.findWithEmail(usersForm.getEmail()).isEmpty())
         {
             model.addAttribute("error", "User with this email already exists");
@@ -103,6 +108,7 @@ public class RegistrationController {
                 users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
                 users.setProfileDescription(termUser.getColorOfDefaultAvatar());
                 users.setAvatar(defaultAvatarService.defaultAvatar(termUser.getColorOfDefaultAvatar()));
+                users.setColorOfDefaultAvatar(termUser.getColorOfDefaultAvatar());
                 users.setStatus("");
                 users.setProfileDescription("");
                 userService.saveUser(users);
@@ -118,6 +124,7 @@ public class RegistrationController {
             users.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
             users.setProfileDescription(termUser.getColorOfDefaultAvatar());
             users.setAvatar(defaultAvatarService.defaultAvatar(termUser.getColorOfDefaultAvatar()));
+            users.setColorOfDefaultAvatar(termUser.getColorOfDefaultAvatar());
             users.setStatus("");
             users.setProfileDescription("");
             userService.saveUser(users);

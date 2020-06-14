@@ -32,7 +32,7 @@ public class TermUser {
     private int counter;
 
 
-    @NotBlank(message = "Please choose color of default profile's photo")
+
     private String colorOfDefaultAvatar;
 
 
