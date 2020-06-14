@@ -51,7 +51,7 @@ public class RegistrationController {
             model.addAttribute("error", "User with this username already exists");
             return "registration";
         }
-        if(usersForm.getColorOfDefaultAvatar()!=null)
+        if(usersForm.getColorOfDefaultAvatar()==null)
         {
             model.addAttribute("error", "Please choose color of default avatar");
             return "registration";
