@@ -44,6 +44,7 @@ public class TermUserService {
     public TermUser findByActivationCode(String activationCode)
     {
         List<TermUser> termUserList=entityManager.createQuery("select termUser from TermUser termUser where termUser.activationCode like :paramActivationCode",TermUser.class)
+                .setParameter("paramActivationCode",activationCode)
                 .getResultList();
 
         if(termUserList.isEmpty())
