@@ -43,7 +43,17 @@ public class TermUserService {
 
     public TermUser findByActivationCode(String activationCode)
     {
-        return termUserRepository.findByActivationCode(activationCode);
+        List<TermUser> termUserList=entityManager.createQuery("select termUser from TermUser termUser where termUser.activationCode like :paramActivationCode",TermUser.class)
+                .getResultList();
+
+        if(termUserList.isEmpty())
+        {
+            return null;
+        }
+        else
+        {
+            return termUserList.get(0);
+        }
     }
 
     public List<TermUser> findWithEmail(String email)
